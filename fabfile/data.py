@@ -91,7 +91,7 @@ def update():
     #update_featured_social()
     logger.setLevel(app_config.LOG_LEVEL)
     load_books()
-    load_images()
+    # load_images()
     #make_promotion_thumb()
 
 @task
@@ -592,7 +592,7 @@ def load_books():
     """
     logger.info("start load_books")
     logger.info("get books csv")
-    get_books_csv()
+    #get_books_csv()
     logger.info("start parse_books_csv")
     parse_books_csv()
     logger.info("end load_books")

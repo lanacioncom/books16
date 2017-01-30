@@ -101,6 +101,12 @@ COPY EDITING
 COPY_GOOGLE_DOC_KEY = '1D7z6AocqErij7D8GMGMfxltxweu9yzPN60EuRDeaLNw'
 COPY_PATH = 'data/copy.xlsx'
 
+# Override
+try:
+    from local_settings import COPY_GOOGLE_DOC_KEY
+except ImportError:
+    pass
+
 
 DATA_GOOGLE_DOC_KEY = '1frkTY_2BeCXsf0Uie9P3Pccx8eulCrr6bWkCOOYSTEU'
 
@@ -169,6 +175,12 @@ OAUTH
 """
 
 GOOGLE_OAUTH_CREDENTIALS_PATH = '~/.google_oauth_credentials'
+
+# Override
+try:
+    from local_settings import GOOGLE_OAUTH_CREDENTIALS_PATH
+except ImportError:
+    pass
 
 authomatic_config = {
     'google': {
