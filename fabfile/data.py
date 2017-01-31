@@ -257,6 +257,8 @@ class Book(object):
 
     review_seamus_id = None
     review_seamus_headline = None
+    
+    image_scr = None
 
     def __unicode__(self):
         """
@@ -279,6 +281,8 @@ class Book(object):
         self.reviewer = self._process_text(kwargs['reviewer'])
         self.reviewer_id = self._process_text(kwargs['reviewer id'])
         self.reviewer_link = self._process_text(kwargs['reviewer link'])
+        
+        self.image_scr = self._process_text(kwargs['image_scr'])
 
         self.teaser = _make_teaser(self)
 
@@ -592,7 +596,7 @@ def load_books():
     """
     logger.info("start load_books")
     logger.info("get books csv")
-    #get_books_csv()
+    get_books_csv()
     logger.info("start parse_books_csv")
     parse_books_csv()
     logger.info("end load_books")
