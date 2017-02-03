@@ -3,9 +3,9 @@
 // Typography
 // -------------------------
 
-@font-family-sans-serif:  "Gotham SSm", "Helvetica Neue", Helvetica, Arial, sans-serif;
-@font-family-serif:       Georgia, "Times New Roman", Times, serif;
-@font-family-monospace:   Monaco, Menlo, Consolas, "Courier New", monospace;
+@font-family-sans-serif:  "suecaslabmedium", "Helvetica Neue", Helvetica, Arial, sans-serif;
+@font-family-serif:       "suecaslabthin", Georgia, "Times New Roman", Times, serif;
+@font-family-monospace:   "suecaslabthin", Monaco, Menlo, Consolas, "Courier New", monospace;
 @font-family-base:        @font-family-sans-serif;
 
 @font-size-base:          14px;
@@ -59,6 +59,7 @@
 @tag-8: #524189;
 @tag-9: #5756a5;
 @tag-10: #416ab8;
+@header-color-txt: #00000;
 
 //////////////////////////for the app
 // tags
@@ -67,11 +68,14 @@
 @tag-txt:darken(@deep-blue, 10%);
 
 
-@header: lighten(desaturate(spin(#4cc6ad, 50), 10%), 10%);
-@byline: @white;
-@header-text: @white;
-@header-h1: @white;
-@header-h2: @white;
+//@header: lighten(desaturate(spin(#4cc6ad, 50), 10%), 10%);
+
+@header: #fff url('../assets/books-header.png');
+
+@byline: @header-color-txt;
+@header-text: @header-color-txt;
+@header-h1: @header-color-txt;
+@header-h2: @header-color-txt;
 
 @green7: #74B7A9;
 @green6: #74B7A9;
@@ -90,7 +94,8 @@
 @gray: #837e85;
 
 //GREEN SET
-@pine: lighten(#246042, 15%);
+//@pine: lighten(#0084b6, 100%);
+@pine: #0084b6;
 @pine-fade: lighten(@pine, 30%);
 @pine-dark: darken(@pine, 5%);
 @pine-links: lighten(@pine, 5%);

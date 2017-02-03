@@ -3,7 +3,7 @@
 {% block header_content %}
 <header id="top">
     <div class="header-wrapper">
-        <a class="npr" href="http://npr.org/books/"><img src="assets/books_logo.png" alt="NPR Books" /></a>
+        <a class="npr" href="#completar_este_link"><img src="assets/logo_ln.png" alt="La Nación" /></a>
         <h1>{{ COPY.content.header_title }}</h1>
         <h2>{{ COPY.content.header_subhead }}</h2>
         <p class="byline">{{ COPY.attribution.byline }}</p>
@@ -16,8 +16,10 @@
 
 {% block content %}
     <div class="book-container">
+        <!-- 
     <h1></h1>
-        <!-- <div class="top-row"> -->
+        <div class="top-row"> 
+        -->
             <div class="spacer">
                 <h4 class="hidden-xs">What would you<br> like to read?</h4>
             </div>
@@ -46,6 +48,7 @@
 
 
                 <div class="chatter"><p>{{ COPY.content.chatter }}
+                    <!-- 
                     <a href="http://apps.npr.org/best-books-2015/#/_" target="_blank">2015</a>,
                     <a href="http://apps.npr.org/best-books-2014/#/_" target="_blank">2014</a>,
                     <a href="http://apps.npr.org/best-books-2013/#/_" target="_blank">2013</a>,
@@ -54,7 +57,8 @@
                     <a href="http://www.npr.org/2010/12/23/131566277/best-books-of-2010-the-complete-list" target="_blank">2010</a>,
                     <a href="http://www.npr.org/templates/story/story.php?storyId=121058884" target="_blank">2009</a>,
                     <a href="http://www.npr.org/templates/story/story.php?storyId=97212769" target="_blank">2008</a>
-                    </p>
+                     -->
+                    
                 </div>
                 <button id="mobile-filters" class="visible-xs btn btn-primary btn-block">{{ COPY.content.filter_button }}</button>
                 <button id="clear-mobile-filters" class="visible-xs btn btn-large btn-info clear-tags hide" data-filter-value="*"><i class="icon-cancel-circled2">&nbsp;&nbsp;</i>{{ COPY.content.clear_filters }}</button>

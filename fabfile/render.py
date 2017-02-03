@@ -155,6 +155,7 @@ def render_all():
                     with open(filename, 'w') as f:
                         f.write(content)
             elif rule_string.startswith('/tag_share'):
+                continue
                 with open('data/tag-audit.csv', 'r') as readfile:
                     tags = list(csv.DictReader(readfile))
                 for tag in tags:

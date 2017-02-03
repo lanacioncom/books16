@@ -91,7 +91,7 @@ def update():
     #update_featured_social()
     logger.setLevel(app_config.LOG_LEVEL)
     load_books()
-    # load_images()
+    load_images()
     #make_promotion_thumb()
 
 @task
@@ -351,7 +351,8 @@ class Book(object):
         copy = copytext.Copy(app_config.COPY_PATH)
 
         ordered_items = []
-        slugs = [tag['key'].__str__() for tag in copy['tags']]
+        # slugs = [tag['key'].__str__() for tag in copy['tags']]
+        slugs = [tag['key'] for tag in copy['tags']]
 
         # Add slugs to new list in order from tags spreadsheet, not input order
         for slug in slugs:
@@ -584,7 +585,7 @@ def parse_books_csv():
         writer = csv.writer(f)
         writer.writerow(['tag', 'slug', 'count'])
         for slug, count in tags.items():
-            writer.writerow([SLUGS_TO_TAGS[slug], slug, count])
+            writer.writerow(u"%s" % [SLUGS_TO_TAGS[slug], slug, count])
     logger.info("End.")
 
 
@@ -610,7 +611,7 @@ def load_images():
     """
 
     # Secrets.
-    secrets = app_config.get_secrets()
+    # secrets = app_config.get_secrets()
 
     # Open the books JSON.
     with open('www/static-data/books.json', 'rb') as readfile:
@@ -631,18 +632,19 @@ def load_images():
             continue
 
         # Construct the URL with secrets and the ISBN.
-        book_url = "http://imagesa.btol.com/ContentCafe/Jacket.aspx"
+        book_url = "http://content.cuspide.com/getcover.ashx?ISBN=%s&size=3"
 
-        params = {
-            'UserID': secrets['BAKER_TAYLOR_USERID'],
-            'Password': secrets['BAKER_TAYLOR_PASSWORD'],
-            'Value': book['isbn'],
-            'Return': 'T',
-            'Type': 'L'
-        }
+        # params = {
+        #     'UserID': secrets['BAKER_TAYLOR_USERID'],
+        #     'Password': secrets['BAKER_TAYLOR_PASSWORD'],
+        #     'Value': book['isbn'],
+        #     'Return': 'T',
+        #     'Type': 'L'
+        # }
 
         # Request the image.
-        r = requests.get(book_url, params=params)
+        # r = requests.get(book_url, params=params)
+        r = requests.get(book_url % book['isbn'])
 
         path = 'www/assets/cover'
         if not os.path.exists(path):
@@ -657,23 +659,23 @@ def load_images():
         with open(imagepath, 'wb') as writefile:
             writefile.write(r.content)
 
-        file_size = os.path.getsize(imagepath)
-        if file_size < 10000:
-            logger.info('(%s): Image not available from Baker and Taylor, using NPR book page' % book['title'])
-            url = 'http://www.npr.org/%s' % book['book_seamus_id']
-            npr_r = requests.get(url)
-            soup = BeautifulSoup(npr_r.content, 'html.parser')
-            try:
-                if book['title'] == 'The Three-Body Problem':
-                    alt_img_url = 'http://media.npr.org/assets/bakertaylor/covers/t/the-three-body-problem/9780765377067_custom-d83e0e334f348e6c52fe5da588ec3448921af64f-s600-c85.jpg'
-                else:
-                    alt_img_url = soup.select('.bookedition .image img')[0].attrs.get('src').replace('s99', 's400')
-                logger.info('LOG (%s): Getting alternate image from %s' % (book['title'], alt_img_url))
-                alt_img_resp = requests.get(alt_img_url)
-                with open(imagepath, 'wb') as writefile:
-                    writefile.write(alt_img_resp.content)
-            except IndexError:
-                logger.info('ERROR (%s): Image not available on NPR book page either (%s)' % (book['title'], url))
+        # file_size = os.path.getsize(imagepath)
+        # if file_size < 10000:
+        #     logger.info('(%s): Image not available from Baker and Taylor, using NPR book page' % book['title'])
+        #     url = 'http://www.npr.org/%s' % book['book_seamus_id']
+        #     npr_r = requests.get(url)
+        #     soup = BeautifulSoup(npr_r.content, 'html.parser')
+        #     try:
+        #         if book['title'] == 'The Three-Body Problem':
+        #             alt_img_url = 'http://media.npr.org/assets/bakertaylor/covers/t/the-three-body-problem/9780765377067_custom-d83e0e334f348e6c52fe5da588ec3448921af64f-s600-c85.jpg'
+        #         else:
+        #             alt_img_url = soup.select('.bookedition .image img')[0].attrs.get('src').replace('s99', 's400')
+        #         logger.info('LOG (%s): Getting alternate image from %s' % (book['title'], alt_img_url))
+        #         alt_img_resp = requests.get(alt_img_url)
+        #         with open(imagepath, 'wb') as writefile:
+        #             writefile.write(alt_img_resp.content)
+        #     except IndexError:
+        #         logger.info('ERROR (%s): Image not available on NPR book page either (%s)' % (book['title'], url))
 
         image = Image.open(imagepath)
         image.save(imagepath, optimize=True, quality=75)

@@ -21,6 +21,8 @@ import render
 import text
 import utils
 
+import local_settings
+
 if app_config.DEPLOY_TO_SERVERS:
     import servers
 
@@ -152,7 +154,7 @@ def update():
     """
     text.update()
     data.update()
-    assets.sync()
+    # assets.sync()
 
 
 @task

@@ -170,6 +170,12 @@ Logging
 LOG_FORMAT = '%(levelname)s:%(name)s:%(asctime)s: %(message)s'
 LOG_LEVEL = None
 
+# Override
+try:
+    from LOG_LEVEL import LOG_LEVEL
+except ImportError:
+    pass
+
 """
 OAUTH
 """
