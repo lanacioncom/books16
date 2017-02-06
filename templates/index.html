@@ -7,7 +7,7 @@
         <h1>{{ COPY.content.header_title }}</h1>
         <h2>{{ COPY.content.header_subhead }}</h2>
         <p class="byline">{{ COPY.attribution.byline }}</p>
-        <button class="share btn btn-default" data-toggle="modal" data-backdrop="static" data-target="#share-modal"><i class="icon-export"></i> SHARE THIS APP</button>
+        <button class="share btn btn-default" data-toggle="modal" data-backdrop="static" data-target="#share-modal"><i class="icon-export"></i> COMPARTIR</button>
     </div>
 
 
@@ -21,7 +21,7 @@
         <div class="top-row"> 
         -->
             <div class="spacer">
-                <h4 class="hidden-xs">What would you<br> like to read?</h4>
+                <h4 class="hidden-xs">{{ COPY.content.what_read }}</h4>
             </div>
 
             <div class="title-area">
@@ -34,8 +34,8 @@
                 <div class="btn-group btn-group-lg toggle-text grid-active">
 
 
-                   <button class="grid btn btn-default"><i class="icon-th"></i> Covers</button>
-                   <button class="list btn btn-default"><i class="icon-list-bullet"></i> List</button>
+                   <button class="grid btn btn-default"><i class="icon-th"></i> {{ COPY.content.view_books_covers_btn }}</button>
+                   <button class="list btn btn-default"><i class="icon-list-bullet"></i> {{ COPY.content.view_books_list_btn }}</button>
 
 
                 </div>

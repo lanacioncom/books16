@@ -136,7 +136,7 @@ var filter_books = function() {
         }
 
         $clear_tags.removeClass('hide');
-        var text = 'Showing books tagged ';
+        var text = 'Libros etiquetados como ';
         $current_tag.find('#showing-span').text(text);
         if (remaining_books.length >= COUNTER_THRESHOLD) {
             label += ' (' + remaining_books.length + ')';
@@ -150,7 +150,7 @@ var filter_books = function() {
     } else {
 
         $clear_tags.addClass('hide');
-        var text = 'Showing all books ('+BOOKS.length+')';
+        var text = 'Todos los libros ('+BOOKS.length+')';
         $current_tag.find('#showing-span').text(text);
         $current_tag.find('#tag-span').text('');
         $books_grid.addClass('filter-inactive');
@@ -598,7 +598,7 @@ $(function() {
     // Set up the page.
     resize();
     $back_to_top.hide();
-    $current_tag.find('#showing-span').text('Showing all books');
+    $current_tag.find('#showing-span').text('Todos los libros');
     $current_tag.show();
     _.each($all_tags, function(tag) {
         var $tag = $(tag);
