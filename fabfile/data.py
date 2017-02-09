@@ -32,6 +32,9 @@ from facebook import GraphAPI
 from twitter import Twitter, OAuth
 from csvkit.py2 import CSVKitDictReader, CSVKitDictWriter
 
+BASEPATH = os.path.dirname(os.path.abspath(__file__))
+BASEPATH = os.path.join(BASEPATH, "..")
+
 logging.basicConfig(format=app_config.LOG_FORMAT)
 logger = logging.getLogger(__name__)
 logger.setLevel(app_config.LOG_LEVEL)
@@ -489,6 +492,7 @@ def get_books_csv():
     """
     Downloads the books CSV from google docs.
     """
+
     csv_url = 'https://docs.google.com/spreadsheets/d/%s/pub?gid=0&single=true&output=csv' % (
         app_config.DATA_GOOGLE_DOC_KEY)
     logger.debug(csv_url)
@@ -498,7 +502,7 @@ def get_books_csv():
         if app_config.LOCAL_CSV_PATH:
             shutil.copy(app_config.LOCAL_CSV_PATH, 'data/books.csv')
     else:
-        with open('data/books.csv', 'wb') as writefile:
+        with open(os.path.join(BASEPATH, 'data/books.csv'), 'wb') as writefile:
             writefile.write(r.content)
 
 def get_tags():
@@ -507,7 +511,7 @@ def get_tags():
     """
     print 'Extracting tags from COPY'
 
-    book = xlrd.open_workbook(app_config.COPY_PATH)
+    book = xlrd.open_workbook(os.path.join(BASEPATH, app_config.COPY_PATH))
 
     sheet = book.sheet_by_name('tags')
 
@@ -529,7 +533,7 @@ def parse_books_csv():
     get_tags()
 
     # Open the CSV.
-    with open('data/books.csv', 'r') as readfile:
+    with open(os.path.join(BASEPATH, 'data/books.csv'), 'r') as readfile:
         reader = CSVKitDictReader(readfile, encoding='utf-8')
         reader.fieldnames = [name.strip().lower() for name in reader.fieldnames]
         books = list(reader)
@@ -570,10 +574,10 @@ def parse_books_csv():
         book_list.append(b.__dict__)
 
     # Dump the list to JSON.
-    with open('www/static-data/books.json', 'wb') as writefile:
+    with open(os.path.join(BASEPATH, 'www/static-data/books.json'), 'wb') as writefile:
         writefile.write(json.dumps(book_list))
 
-    with open('data/test-itunes-equiv.csv', 'w') as fout:
+    with open(os.path.join(BASEPATH, 'data/test-itunes-equiv.csv'), 'w') as fout:
         writer = CSVKitDictWriter(fout,
                                   fieldnames=['title', 'isbn',
                                               'isbn13', 'itunes_id'],
@@ -581,7 +585,7 @@ def parse_books_csv():
         writer.writeheader()
         writer.writerows(book_list)
 
-    with open('data/tag-audit.csv', 'w') as f:
+    with open(os.path.join(BASEPATH, 'data/tag-audit.csv'), 'w') as f:
         writer = csv.writer(f)
         writer.writerow(['tag', 'slug', 'count'])
         for slug, count in tags.items():

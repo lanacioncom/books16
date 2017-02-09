@@ -27,7 +27,7 @@ app.add_template_filter(urlencode_filter, name='urlencode')
 
 
 @app.route('/')
-@oauth.oauth_required
+# @oauth.oauth_required
 def index():
     """
     Example view demonstrating rendering a simple HTML page.
