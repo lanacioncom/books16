@@ -85,26 +85,26 @@ var ANALYTICS = (function () {
     /*
      * Comscore
      */
-    var setupComscore = function() {
-        _comscore.push({ c1: "2", c2: "17691522" });
+    // var setupComscore = function() {
+    //     _comscore.push({ c1: "2", c2: "17691522" });
 
-        (function() {
-            var s = document.createElement("script"), el = document.getElementsByTagName("script")[0]; s.async = true;
-            s.src = (document.location.protocol == "https:" ? "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js";
-            el.parentNode.insertBefore(s, el);
-        })();
-    }
+    //     (function() {
+    //         var s = document.createElement("script"), el = document.getElementsByTagName("script")[0]; s.async = true;
+    //         s.src = (document.location.protocol == "https:" ? "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js";
+    //         el.parentNode.insertBefore(s, el);
+    //     })();
+    // }
 
     /*
      * Nielson
      */
-    var setupNielson = function() {
-        (function () {
-            var d = new Image(1, 1);
-            d.onerror = d.onload = function () { d.onerror = d.onload = null; };
-            d.src = ["//secure-us.imrworldwide.com/cgi-bin/m?ci=us-803244h&cg=0&cc=1&si=", escape(window.location.href), "&rp=", escape(document.referrer), "&ts=compact&rnd=", (new Date()).getTime()].join('');
-        })();
-    }
+    // var setupNielson = function() {
+    //     (function () {
+    //         var d = new Image(1, 1);
+    //         d.onerror = d.onload = function () { d.onerror = d.onload = null; };
+    //         d.src = ["//secure-us.imrworldwide.com/cgi-bin/m?ci=us-803244h&cg=0&cc=1&si=", escape(window.location.href), "&rp=", escape(document.referrer), "&ts=compact&rnd=", (new Date()).getTime()].join('');
+    //     })();
+    // }
 
     /*
      * Chartbeat

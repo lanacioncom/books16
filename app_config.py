@@ -20,7 +20,7 @@ NAMES
 """
 # Project name to be used in urls
 # Use dashes, not underscores!
-PROJECT_SLUG = 'best-books-2016'
+PROJECT_SLUG = 'books2016'
 
 # Allow override from local settings to test random_prod locally
 try:
@@ -33,7 +33,7 @@ PROJECT_FILENAME = 'books16'
 
 # The name of the repository containing the source
 REPOSITORY_NAME = 'books16'
-GITHUB_USERNAME = 'nprapps'
+GITHUB_USERNAME = 'lanacioncom'
 REPOSITORY_URL = 'git@github.com:%s/%s.git' % (GITHUB_USERNAME, REPOSITORY_NAME)
 REPOSITORY_ALT_URL = None # 'git@bitbucket.org:nprapps/%s.git' % REPOSITORY_NAME'
 
@@ -44,7 +44,7 @@ ASSETS_SLUG = 'books16'
 """
 DEPLOYMENT
 """
-PRODUCTION_S3_BUCKET = 'apps.npr.org'
+PRODUCTION_S3_BUCKET = 'olcreativa.lanacion.com.ar/dev/test'
 
 STAGING_S3_BUCKET = 'stage-apps.npr.org'
 

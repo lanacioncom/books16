@@ -164,7 +164,7 @@ header {
         //padding-left:25px;
     }
 
-    #ilustration {
+    #illustration {
         position: absolute;
         bottom: -90px; 
         right: 250px;
@@ -849,13 +849,14 @@ h1 + #story-meta { margin-top: -11px; }
 }
 
 .tag {
-    // border: none;
+    border: none;
     // font-weight: normal;
     // font-size: 12px;
+     background-color: @tags_bg;
 
     // &:hover {
     //  color: @pine;
-    //  background-color: lighten(@pine, 45%);
+     // background-color: lighten(@pine, 45%);
 
     //  @media screen and (min-width: @screen-sm){
     //      color: #fff;
@@ -865,7 +866,8 @@ h1 + #story-meta { margin-top: -11px; }
 
     margin: 4px 0;
     &:hover{
-        text-decoration:underline;
+        background-color: lighten(@tags_bg, 4%);
+        // text-decoration:underline;
         color:white;
     }
 
