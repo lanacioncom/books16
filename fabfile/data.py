@@ -646,9 +646,7 @@ def load_images():
         #     'Type': 'L'
         # }
 
-        # Request the image.
         # r = requests.get(book_url, params=params)
-        r = requests.get(book_url % book['isbn'])
 
         path = 'www/assets/cover'
         if not os.path.exists(path):
@@ -659,9 +657,12 @@ def load_images():
         if os.path.exists(imagepath):
             logger.debug('image already downloaded for: %s' % book['slug'])
 
-        # Write the image to www using the slug as the filename.
-        with open(imagepath, 'wb') as writefile:
-            writefile.write(r.content)
+        else:
+            # Request the image.
+            r = requests.get(book_url % book['isbn'])
+            # Write the image to www using the slug as the filename.
+            with open(imagepath, 'wb') as writefile:
+                writefile.write(r.content)
 
         # file_size = os.path.getsize(imagepath)
         # if file_size < 10000:

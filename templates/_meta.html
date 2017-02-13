@@ -1,5 +1,99 @@
-<meta name="description" content="{{ COPY.share.meta_description }}">
+<meta name="copyright" content="2017 - LA NACION">
+
+<title>{{ COPY.content.header_title }} - {{now}} - La Nación</title>
+
+<meta name="title" content="{{ COPY.content.header_title }} - {{now}}">
+<meta name="description" content="{{ COPY.content.header_subhead }}">
+
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<link rel="shortcut icon" href="http://media.npr.org/favicon.ico" />
+
+
+{# Twitter #}
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="{{ COPY.share.twitter_handle }}">
+<meta name="twitter:description" content="{{ COPY.share.twitter_text }}">
+<meta name="twitter:image" content="{{ COPY.share.twitter_image_url }}" />
+
+{# Facebook #}
+<meta property="og:url" content="{{ COPY.share.share_url }}" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="{{ COPY.share.facebook_title }}" />
+<meta property="og:description" content="{{ COPY.share.facebook_text }}" />
+<meta property="og:image" content="{{ COPY.share.facebook_image_url }}" />
+<meta property="og:site_name" content="lanacion.com.ar" />
+<!-- <meta property="fb:app_id" content="{{ COPY.share.facebook_app_id }}" /> -->
+
+{# Google News #}
+<meta name="thumbnail" content="{{ COPY.share.google_news_image_url }}" />
+
+
+<!-- Google Analytics -->
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-621326-122', {'name':'especiales'});
+    ga('especiales.send','send', 'pageview');
+    ga('create', 'UA-621326-98', 'auto');
+    ga('send', 'pageview');
+</script>
+<!-- Google Analytics -->
+
+<!-- Begin comScore Tag -->
+<script>
+    var _comscore = _comscore || [];
+    _comscore.push({ c1: "2", c2: "6906398" });
+    (function () {
+        var s = document.createElement("script"), el = document.getElementsByTagName("script")[0]; s.async = true;
+        s.src = (document.location.protocol == "https:" ? "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js";
+        el.parentNode.insertBefore(s, el);
+    })();
+</script>
+<noscript>
+  <img src="http://b.scorecardresearch.com/p?c1=2&c2=6906398&cv=2.0&cj=1" />
+</noscript>
+<!-- End comScore Tag -->
+
+<script type="application/ld+json">
+{
+"@context": "http://schema.org",
+"@type": "NewsArticle",
+"headline": "{{ COPY.content.header_title }} - {{now}} - La Nación",
+"url": "{{ COPY.share.share_url }}",
+"thumbnailUrl": "{{ COPY.share.facebook_image_url }}",
+"image": {
+    "@context": "http://schema.org",
+    "@type": "ImageObject",
+    "url": "{{ COPY.share.facebook_image_url }}",
+    "height":540,
+    "width":960
+    },
+"author":  {
+    "@context": "http://schema.org",
+    "@type": "Person",
+    "name": "{AUTOR}"
+    },
+"articleSection": "{{ COPY.content.header_title }}",
+"keywords": ["{{ COPY.content.header_title }}"],
+"dateCreated": "2017-02-01 00:00:00}",
+"datePublished": "2017-03-07 11:34:00",
+"dateModified": "{{dateModified}}",
+"publisher":  {
+    "@type": "Organization",
+    "name": "LA NACION",
+    "url": "http://www.lanacion.com.ar/",
+    "logo": {
+        "@context": "http://schema.org",
+        "@type": "ImageObject",
+        "url": "http://static.lanacion.com.ar/v1/ln/imgs/layout/logos/logo-ln-amp.png",
+        "height":41,
+        "width":391
+        }
+    }
+}
+</script>

@@ -13,6 +13,7 @@ import oauth
 import static
 import re
 import string
+from datetime import datetime
 
 from PIL import Image
 from flask import Flask, make_response, render_template
@@ -33,6 +34,10 @@ def index():
     Example view demonstrating rendering a simple HTML page.
     """
     context = make_context()
+
+    context['dateModified'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    context['now'] = datetime.now().strftime("%d.%m.%Y")
+
 
     with open('data/featured.json') as f:
         context['featured'] = json.load(f)

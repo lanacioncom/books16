@@ -2,16 +2,10 @@
 <html lang="en">
 
 <head>
-<title>Libros LA NACION</title>
-    
-    <meta name="copyright" content="2017 - LA NACION">
-    
-    <meta name="title" content="{{ COPY.content.header_title }} - {FECHA separada por puntos}">
-    <meta name="description" content="{{ COPY.content.header_subhead }}">
 
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+    {% include '_meta.html' %}
+
 
     <link rel="canonical" href="{{ COPY.share.share_url }}">
 
@@ -22,11 +16,6 @@
     <!-- CHARTBEAT -->
     <script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script>
 
-    <!-- WEBFONTS
-    {{ JS.push('js/lib/webfont.js') }}
-    {{ JS.push('js/fonts.js') }}
-    {{ JS.render('js/webfonts.min.js') }}
-    -->
 
     <!-- CSS -->
     <!-- FONTS -->
@@ -35,24 +24,6 @@
     {{ CSS.push('less/app.less') }}
     {% block extra_css %}{% endblock extra_css %}
     {{ CSS.render('css/app.min.css') }}
-
-    {# Twitter #}
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:site" content="{{ COPY.share.twitter_handle }}">
-    <meta name="twitter:description" content="{{ COPY.share.twitter_text }}">
-    <meta name="twitter:image" content="{{ COPY.share.twitter_image_url }}" />
-
-    {# Facebook #}
-    <meta property="og:title" content="{{ COPY.share.facebook_title }}" />
-    <meta property="og:url" content="{{ COPY.share.share_url }}" />
-    <meta property="og:type" content="article" />
-    <meta property="og:description" content="{{ COPY.share.facebook_text }}" />
-    <meta property="og:image" content="{{ COPY.share.facebook_image_url }}" />
-    <meta property="og:site_name" content="lanacion.com.ar" />
-    <meta property="fb:app_id" content="{{ COPY.share.facebook_app_id }}" />
-
-    {# Google News #}
-    <meta name="thumbnail" content="{{ COPY.share.google_news_image_url }}" />
 
     {% block extra_head %}
     {% endblock extra_head %}
@@ -129,7 +100,6 @@
     {{ JS.push('node_modules/hasher/dist/js/hasher.js') }}
     {{ JS.push('js/lib/jquery.unveil.js') }}
     {% block extra_foot_js %}{% endblock extra_foot_js %}
-    {{ JS.push('js/analytics.js')}}
     {{ JS.push('js/templates.js') }}
     {{ JS.push('js/app.js') }}
     {{ JS.render('js/app-footer.min.js') }}
