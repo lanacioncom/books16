@@ -12,6 +12,26 @@
 @yellow-light: #FFD34E;
 @yellow-dark: #DB9E36;
 
+
+svg#logo {  // logo LN
+    
+    path, polygon {
+        fill : @logo_LN;
+    }
+}
+#herramientas-sociales {
+
+    display: inline-block;;
+
+    a {width: 26px;height: 22px;font: normal 18px 'Arial';line-height: 10px;margin-top: 2px;display: inline-block;border-radius: 34px;text-decoration: none;background: transparent;margin: 0 0 0 7px;color: #000;text-align: center;padding-top: 4px;}
+    // a:hover {color:#fff;}
+    a:before {vertical-align: middle;}
+
+}
+
+
+
+
 body.modal-open {
     // Fix for iOS scroll bug
     // https://github.com/twbs/bootstrap/issues/14839
@@ -180,14 +200,14 @@ header {
     .share{
         border:none;
         font-size: 13px;
-        color: @pine;
-        background-color: @light-gray;
+        // color: @pine;
+        // background-color: @light-gray;
         margin:0;
         margin-top: 20px;
 
         &:hover{
-            color: @pine-dark;
-            background-color: @dark-gray;
+            // color: @pine-dark;
+            // background-color: @dark-gray;
         }
 
         @media screen and (min-width: @screen-sm){

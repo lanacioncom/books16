@@ -3,11 +3,23 @@
 {% block header_content %}
 <header id="top">
     <div class="header-wrapper">
-        <a class="npr" href="#completar_este_link"><img src="images/logo_ln.png" alt="La Nación" /></a>
+        <!-- <a class="npr" href="#completar_este_link"><img src="images/logo_ln.png" alt="La Nación" /></a> -->
+
+        <a href="http://www.lanacion.com.ar" title="LA NACION">
+                <svg id="logo" width="100px" height="25px" viewBox="0 0 718 77" enable-background="new 0 0 718 77"><g><path fill="#006699" d="M65.001,49.539c0,16.418-12.178,20.676-27.445,20.676h-2.734V7.918h12.803V2.959H1.15v4.959h11.623v62.297H1.15v4.964h69.598V46.427h-5.746V49.539z"></path><path fill="#006699" d="M125.537,3.069h-8.705L87.087,64.1c-1.721,3.392-4.396,6.115-9.939,6.115h-2.351v4.964h27.898v-4.964H97.65c-2.926,0-5.469-0.372-5.469-3.757c0-1.146,0.598-2.252,1.025-3.078l3.98-8.318h30.166l7.572,15.153h-11.139v4.964h45.971v-4.964h-9.664L125.537,3.069z M99.599,50.14l12.163-24.51h0.991l12.18,24.51H99.599z"></path><path fill="#006699" d="M301.664,2.959h-28.69v4.959h3.466c5.786,0,8.93,1.896,8.93,5.83v31.88h-0.266L248.087,2.959h-33.571v4.959h1.982c4.362,0,8.819,3.177,8.819,8.075v46.852c0,6.247-3.797,7.37-7.838,7.37h-1.445h-1.921v4.964h28.634v-4.964h-2.246c-7.264,0-10.153-0.991-10.153-6.835V17.021h0.263l50.272,58.158h9.585V13.43c0-2.574,2.439-5.512,8.377-5.512h2.818V2.959z"></path><path fill="#006699" d="M351.055,3.069h-8.732L312.548,64.1c-1.684,3.392-4.377,6.115-9.937,6.115h-2.36v4.964h27.988v-4.964h-5.146c-2.899,0-5.433-0.372-5.433-3.757c0-1.146,0.609-2.252,1.008-3.078l4.005-8.318h30.209l7.507,15.153h-11.137v4.964h45.954v-4.964h-9.646L351.055,3.069z M325.123,50.14l12.114-24.51h1.04l12.125,24.51H325.123z"></path><path fill="#006699" d="M439.029,71.773c-17.453,0-20.705-15.069-20.705-32.594c0-18.248,3.611-33.132,21.137-33.132c14.004,0,19.795,12.213,21.924,22.639h5.701V3.069h-3.787c-0.117,2.191-0.748,4.151-3.625,4.151c-2.824,0-8.229-6.1-23.582-6.1c-20.635,0-41.961,17.326-41.961,38.059c0,21.049,22.047,37.82,43.729,37.82c16.932,0,30.016-9.829,30.016-27.461h-6.002C461.873,62.377,452.666,71.773,439.029,71.773z"></path><polygon fill="#006699" points="478.668,7.918 490.299,7.918 490.299,70.215 478.668,70.215 478.668,75.179 523.994,75.179 523.994,70.215 512.311,70.215 512.311,7.918 523.994,7.918 523.994,2.959 478.668,2.959  "></polygon><path fill="#006699" d="M576.51,1.121c-21.391,0-43.041,16.622-43.041,37.949c0,21.344,21.65,37.93,43.041,37.93c21.273,0,43.301-16.586,43.301-37.93C619.811,17.743,597.783,1.121,576.51,1.121z M576.611,72.093c-16.943,0-19.162-16.312-19.162-33.022c0-16.804,2.293-33.022,19.162-33.022c17.004,0,19.193,16.087,19.193,33.022C595.805,55.891,593.615,72.093,576.611,72.093z"></path><path fill="#006699" d="M685.438,2.959v4.959h3.512c5.76,0,8.898,1.896,8.898,5.83v31.88h-0.33L660.529,2.959h-33.568v4.959h1.986c4.385,0,8.859,3.177,8.859,8.075v46.852c0,6.247-3.795,7.37-7.816,7.37h-1.428h-1.957v4.964h28.592v-4.964h-2.254c-7.316,0-10.15-0.991-10.15-6.835V17.021h0.238l50.281,58.158h9.588V13.43c0-2.574,2.508-5.512,8.404-5.512h2.846V2.959H685.438z"></path></g></svg>
+            </a>
+
         <h1>{{ COPY.content.header_title }}</h1>
         <h2>{{ COPY.content.header_subhead }}</h2>
         <p class="byline">{{ COPY.attribution.byline }}</p>
-        <button class="share btn btn-default" data-toggle="modal" data-backdrop="static" data-target="#share-modal"><i class="icon-export"></i> COMPARTIR</button>
+        <!-- <button class="share btn btn-default" data-toggle="modal" data-backdrop="static" data-target="#share-modal"><i class="icon-export"></i> COMPARTIR</button> -->
+
+        <div id="herramientas-sociales" class="share">
+                <a class="icon-facebook" title="Compartilo en Facebook" href="https://www.facebook.com/sharer/sharer.php?u={{ COPY.share.share_url }}" target="_blank" onclick="window.open(this.href, this.target, 'width=555,height=400'); return false;"></a>
+                <a class="icon-twitter" title="Compartilo en Twitter" href="https://twitter.com/home?status={{ COPY.share.share_url }}" target="_blank" onclick="window.open(this.href, this.target, 'width=555,height=400'); return false;"></a>
+                <a class="icon-mail" target="_blank" title="Compartilo por e-mail" href="mailto:?subject={{ COPY.content.header_title }}&amp;body={{ COPY.share.share_url }} \n {{ COPY.share.twitter_text }}"></a>
+            </div>
+
 
         <img id="illustration" alt="Ilustración" src="images/ilustracion.gif">
     </div>
