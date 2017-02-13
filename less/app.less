@@ -50,7 +50,7 @@ nav, .col-md-12, header, footer {
 
 // General styles
 a, a:link, a:visited {
-    color: @pine-links;
+    //color: @pine-links;
     text-decoration: none;
 }
 a:hover {
@@ -166,17 +166,17 @@ header {
 
     #illustration {
         position: absolute;
-        bottom: -90px; 
+        bottom: -90px;
         right: 250px;
         width: 250px;
 
-        @media screen and (max-width: @screen-sm) {            
+        @media screen and (max-width: @screen-sm) {
             right: 11px;
-            bottom: -70px; 
+            bottom: -70px;
             width: 200px;
         }
     }
-    
+
     .share{
         border:none;
         font-size: 13px;
@@ -636,6 +636,7 @@ h1 + #story-meta { margin-top: -11px; }
 
         a:hover {
         color: lighten(@pine, 20%);
+
         }
     }
 }
@@ -934,7 +935,7 @@ h1 + #story-meta { margin-top: -11px; }
             white-space:normal;
 
             &:hover {
-                text-decoration: underline;
+                //text-decoration: underline;
             }
 
             &.selected {
@@ -1055,7 +1056,7 @@ h1 + #story-meta { margin-top: -11px; }
 }
 
 .title-area{
-    padding: 0 0 25px 0;
+    padding: 0 0 20px 0;
 
     @media screen and (max-width: @screen-sm){
         padding:10px 0;
@@ -1207,7 +1208,7 @@ h1 + #story-meta { margin-top: -11px; }
     }
 
     .author, .reviewer, .external-link {
-        color: #999;
+        color: @pine;
         font-size: 13px;
         line-height: 1.3em;
     }
@@ -1535,6 +1536,11 @@ footer {
         }
 
         .title {
+          color:#0085b5;
+        }
+
+        .title:hover {
+          color: #00a0db;
         }
 
         .author {
@@ -1718,12 +1724,12 @@ footer {
 
         .spacer,
         .tags-wrapper {
-            width: 200px;
+            width: 212px;
             //text-align: right;
 
             h4 {
                 vertical-align:top;
-                font-size: 20px;
+                font-size: 18px;
                 line-height: 1.2;
                 margin: 4px 0 0 0;
                 clear: both;
