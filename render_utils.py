@@ -146,7 +146,7 @@ class CSSIncluder(Includer):
             src_paths.append('%s' % src)
 
             try:
-                compressed_src = subprocess.check_output(["node_modules/less/bin/lesscxx --source-map --source-map-map-inline", "-x", src])
+                compressed_src = subprocess.check_output(["node_modules/less/bin/lessc", "-x", src])
                 output.append(compressed_src)
             except:
                 print 'It looks like "lessc" isn\'t installed. Try running: "npm install"'
