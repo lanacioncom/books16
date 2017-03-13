@@ -19,6 +19,7 @@ svg#logo {  // logo LN
         fill : @logo_LN;
     }
 }
+
 #herramientas-sociales {
 
     display: inline-block;;
@@ -28,7 +29,6 @@ svg#logo {  // logo LN
     a:before {vertical-align: middle;}
 
 }
-
 
 
 
@@ -130,10 +130,40 @@ header {
     border-bottom: 3px solid @pine-fade1;
 
 
-
     @media screen and (max-width: @screen-sm) {
         padding-bottom: 30px;
         height: 290px;
+    }
+
+    .ln_header {
+        position: relative;
+        border-bottom: 1px solid #ccc;
+
+    }
+
+    .share{
+        
+        border:none;
+        font-size: 13px;
+        // color: @pine;
+        // background-color: @light-gray;
+        // margin:0;
+        // margin-top: 20px;
+        
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        margin-top: 0;
+
+        &:hover{
+            // color: @pine-dark;
+            // background-color: @dark-gray;
+        }
+
+        // @media screen and (min-width: @screen-sm){
+        //     right: 0px;
+        // }
+
     }
 
     h1 {
@@ -195,30 +225,6 @@ header {
             bottom: -70px;
             width: 200px;
         }
-    }
-
-    .share{
-        
-        border:none;
-        font-size: 13px;
-        // color: @pine;
-        // background-color: @light-gray;
-        // margin:0;
-        // margin-top: 20px;
-        
-        position: absolute;
-        top: 29px;
-        right: 35px;
-        margin-top: 0;
-
-        &:hover{
-            // color: @pine-dark;
-            // background-color: @dark-gray;
-        }
-
-        // @media screen and (min-width: @screen-sm){
-        // }
-
     }
 
     @media screen and (min-width: @screen-sm){
