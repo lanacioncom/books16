@@ -386,9 +386,9 @@ var on_hash_changed = function(new_hash, old_hash) {
     }
 
     if (selected_tags.length > 0) {
-        $mobile_filters_btn.text('Add more filters');
+        $mobile_filters_btn.text('Agregar un filtro');
     } else {
-        $mobile_filters_btn.text('Filter by tags');
+        $mobile_filters_btn.text('Filtrar por tema');
     }
 
     first_hash = false;
