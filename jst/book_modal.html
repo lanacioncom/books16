@@ -101,8 +101,7 @@
                         <span class="icon icon-mail"></span>
                     </div>
                 </a>
-
-                <a href="https://twitter.com/share?text=<%= encodeURIComponent('Look what I found on @NPRBooks\' #bookconcierge: ' + book.title) %>&amp;url=<%= encodeURIComponent(APP_CONFIG.SHARE_URL + "share/" + book.slug + ".html") %>" target="_blank" onclick="_gaq.push(['_trackEvent', '<%= APP_CONFIG.PROJECT_SLUG %>', 'twitter', '<%= book.slug %>']);">
+                <a href="https://twitter.com/share?text=<%= encodeURIComponent(COPY.content.header_title + ': ' + book.title) %>&amp;url=<%= encodeURIComponent(APP_CONFIG.SHARE_URL + "share/" + book.slug + ".html") %>" target="_blank" onclick="_gaq.push(['_trackEvent', '<%= APP_CONFIG.PROJECT_SLUG %>', 'twitter', '<%= book.slug %>']);">
                     <div class="share-button">
                         <span class="icon icon-twitter"></span>
                     </div>
