@@ -1,6 +1,7 @@
 import logging
 import os
-os.environ.get('DEPLOYMENT_TARGET', True)
+
+os.environ["DEPLOYMENT_TARGET"] = "production"
 
 COPY_GOOGLE_DOC_KEY = 'YOUR_COPY_GOOGLE_DOC_KEY'
 #DATA_GOOGLE_DOC_KEY="YOUR_DATA_GOOGLE_DOC_KEY"
@@ -12,4 +13,3 @@ GOOGLE_OAUTH_CREDENTIALS_PATH = '~/.google_oauth_credentials'
 # USE_ITUNES_ID = None
 # LOG_LEVEL = logging.info
 
-# print "**** GOO api client: %s" % (os.environ["GOOGLE_OAUTH_CLIENT_ID"])

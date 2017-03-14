@@ -11,6 +11,7 @@ See get_secrets() below for a fast way to access them.
 
 import os
 import logging
+import local_settings
 from authomatic.providers import oauth2
 from authomatic import Authomatic
 
@@ -20,7 +21,7 @@ NAMES
 """
 # Project name to be used in urls
 # Use dashes, not underscores!
-PROJECT_SLUG = 'books2016'
+PROJECT_SLUG = 'books16'
 
 # Allow override from local settings to test random_prod locally
 try:
@@ -237,7 +238,7 @@ def configure_targets(deployment_target):
 
     if deployment_target == 'production':
         S3_BUCKET = PRODUCTION_S3_BUCKET
-        S3_BASE_URL = 'https://%s/%s' % (S3_BUCKET, PROJECT_SLUG)
+        S3_BASE_URL = 'http://%s/%s' % (S3_BUCKET, PROJECT_SLUG)
         S3_DEPLOY_URL = 's3://%s/%s' % (S3_BUCKET, PROJECT_SLUG)
         SERVERS = PRODUCTION_SERVERS
         SERVER_BASE_URL = '//%s/%s' % (SERVERS[0], PROJECT_SLUG)

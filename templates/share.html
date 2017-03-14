@@ -4,19 +4,14 @@
 <head>
     <title>Mejores libros : LN</title>
 
-    {% if not DEBUG %}
-    <script>
-    window.location = '{{ S3_BASE_URL }}/#/book/{{ book.slug }}';
-    </script>
-    {% endif %}
 
     {# Twitter #}
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:site" content="{{ twitter_handle }}">
+    <meta name="twitter:site" content="{{ COPY.share.twitter_handle }}">
     <meta name="twitter:image" content="{{ book.thumb }}" />
 
     {# Facebook #}
-    <meta property="og:title" content="NPR's Best Books of 2016 - {{ book.title }}" />
+    <meta property="og:title" content="{{ COPY.content.header_title }} - {{ book.title }}" />
     <meta property="og:url" content="{{ S3_BASE_URL }}/share/{{ book.slug }}.html" />
     <meta property="og:type" content="article" />
     <meta property="og:description" content="{{ book.teaser }}" />
@@ -27,14 +22,95 @@
     {% endif %}
 
 
-    <meta property="og:site_name" content="NPR.org" />
+    <meta property="og:site_name" content="libros.lanacion.com.ar" />
     <meta property="fb:app_id" content="{{ COPY.share.facebook_app_id }}" />
 
     {# Google News #}
     <meta name="thumbnail" content="{{ book.thumb }}" />
+
+
+
+    <!-- Google Analytics -->
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-621326-122', {'name':'especiales'});
+        ga('especiales.send', 'pageview');
+        ga('create', 'UA-621326-98', 'auto');
+        ga('send', 'pageview');
+    </script>
+    <!-- Google Analytics -->
+
+    <!-- Begin comScore Tag -->
+    <script>
+        var _comscore = _comscore || [];
+        _comscore.push({ c1: "2", c2: "6906398" });
+        (function () {
+            var s = document.createElement("script"), el = document.getElementsByTagName("script")[0]; s.async = true;
+            s.src = (document.location.protocol == "https:" ? "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js";
+            el.parentNode.insertBefore(s, el);
+        })();
+    </script>
+    <noscript>
+      <img src="http://b.scorecardresearch.com/p?c1=2&c2=6906398&cv=2.0&cj=1" />
+    </noscript>
+    <!-- End comScore Tag -->
+
+    <script type="application/ld+json">
+    {
+    "@context": "http://schema.org",
+    "@type": "NewsArticle",
+    "headline": "{{ COPY.content.header_title }}: {{ book.title }} - {{now}} - La Nación",
+    "url": "{{ S3_BASE_URL }}/share/{{ book.slug }}.html",
+    "thumbnailUrl": "{{ book.thumb }}",
+    "image": {
+        "@context": "http://schema.org",
+        "@type": "ImageObject",
+        "url": "{{ book.thumb }}"
+    {% if thumb_width and thumb_height%}
+        ,
+        "height":{{ thumb_height }},
+        "width":{{ thumb_width }}
+    {% endif %}
+        },
+    "author":  {
+        "@context": "http://schema.org",
+        "@type": "Person",
+        "name": "{AUTOR}"
+        },
+    "articleSection": "{{ COPY.content.header_title }}: {{ book.title }}",
+    "keywords": ["{{ COPY.content.header_title }}", "{{ book.title }}"],
+    "dateCreated": "2017-02-01 00:00:00",
+    "datePublished": "{{now}}",
+    "dateModified": "{{dateModified}}",
+    "publisher":  {
+        "@type": "Organization",
+        "name": "LA NACION",
+        "url": "http://www.lanacion.com.ar/",
+        "logo": {
+            "@context": "http://schema.org",
+            "@type": "ImageObject",
+            "url": "http://static.lanacion.com.ar/v1/ln/imgs/layout/logos/logo-ln-amp.png",
+            "height":41,
+            "width":391
+            }
+        }
+    }
+    </script>
+
+    {% if not DEBUG %}
+    <script>
+    window.location = '{{ S3_BASE_URL }}/#/book/{{ book.slug }}';
+    </script>
+    {% endif %}
 </head>
 
 <body>
+
 </body>
 
 </html>

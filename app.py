@@ -53,6 +53,11 @@ def index():
 def share(slug):
     featured_book = None
     context = make_context()
+
+
+    context['dateModified'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    context['now'] = datetime.now().strftime("%d.%m.%Y")
+    
     with open('www/static-data/books.json', 'rb') as f:
         books = json.load(f)
         for book in books:
