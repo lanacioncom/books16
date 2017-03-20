@@ -81,7 +81,6 @@ var ANALYTICS = (function () {
         }
         
         trackEvent("orientation", orientation);
-        // _gaq.push(['_setCustomVar', 6, 'Orientation', orientation, 3]);
 
         var viewportSize = document.body.clientWidth;
         var viewportGrouping = '1760 and higher';
@@ -201,6 +200,7 @@ var ANALYTICS = (function () {
 
     setupGoogle();
     setupComscore();
+    globalTracking();
 
     return {
         'trackEvent': trackEvent,
