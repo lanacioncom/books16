@@ -54,7 +54,7 @@ var ANALYTICS = (function () {
     var trackEvent = function(eventName, label, value) {
         var eventData = {
             'hitType': 'event',
-            'eventCategory': APP_CONFIG.PROJECT_SLUG,
+            'eventCategory': "libros_ln_"+APP_CONFIG.PROJECT_SLUG,
             'eventAction': eventName
         }
 
