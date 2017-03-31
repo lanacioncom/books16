@@ -21,7 +21,7 @@ NAMES
 """
 # Project name to be used in urls
 # Use dashes, not underscores!
-PROJECT_SLUG = 'books16'
+PROJECT_SLUG = '2017'
 
 # Allow override from local settings to test random_prod locally
 try:
@@ -30,7 +30,7 @@ except ImportError:
     pass
 
 # Project name to be used in file paths
-PROJECT_FILENAME = 'books16'
+PROJECT_FILENAME = '2017'
 
 # The name of the repository containing the source
 REPOSITORY_NAME = 'books16'
@@ -40,29 +40,29 @@ REPOSITORY_ALT_URL = None # 'git@bitbucket.org:nprapps/%s.git' % REPOSITORY_NAME
 
 # Project name used for assets rig
 # Should stay the same, even if PROJECT_SLUG changes
-ASSETS_SLUG = 'books16'
+ASSETS_SLUG = '2017'
 
 """
 DEPLOYMENT
 """
-PRODUCTION_S3_BUCKET = 'olcreativa.lanacion.com.ar/dev/test'
+PRODUCTION_S3_BUCKET = 'libros.lanacion.com.ar'
 
 STAGING_S3_BUCKET = 'stage-apps.npr.org'
 
-ASSETS_S3_BUCKET = 'assets.apps.npr.org'
+ASSETS_S3_BUCKET = 'libros.lanacion.com.ar'
 
 DEFAULT_MAX_AGE = 20
 
 RELOAD_TRIGGER = False
 RELOAD_CHECK_INTERVAL = 60
 
-PRODUCTION_SERVERS = ['cron.nprapps.org']
+PRODUCTION_SERVERS = ['libros.lanacion.com.ar']
 STAGING_SERVERS = ['cron-staging.nprapps.org']
 
 # Should code be deployed to the web/cron servers?
 DEPLOY_TO_SERVERS = False
 
-SERVER_USER = 'ubuntu'
+SERVER_USER = 'cberetelegni'
 SERVER_PYTHON = 'python2.7'
 SERVER_PROJECT_PATH = '/home/%s/apps/%s' % (SERVER_USER, PROJECT_FILENAME)
 SERVER_REPOSITORY_PATH = '%s/repository' % SERVER_PROJECT_PATH

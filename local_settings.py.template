@@ -2,14 +2,14 @@ import logging
 import os
 
 os.environ["DEPLOYMENT_TARGET"] = "production"
+os.environ["aws_access_key_id"] = "XXXXXXXXXXXXX"
+os.environ["aws_secret_access_key"] = "XXXXXXXXXXXXX+XXXXXXXXXXXXX"
 
-COPY_GOOGLE_DOC_KEY = 'YOUR_COPY_GOOGLE_DOC_KEY'
-#DATA_GOOGLE_DOC_KEY="YOUR_DATA_GOOGLE_DOC_KEY"
 
-GOOGLE_OAUTH_CREDENTIALS_PATH = '~/.google_oauth_credentials'
+COPY_GOOGLE_DOC_KEY = 'XXXXXXXXXXXXX'
+DATA_GOOGLE_DOC_KEY="XXXXXXXXXXXXX"
 
-# LOCAL_CSV_PATH = "data/test_local_books.csv"
+GOOGLE_OAUTH_CREDENTIALS_PATH = './._google_oauth_credentials'
+ 
 
-# USE_ITUNES_ID = None
-# LOG_LEVEL = logging.info
-
+USE_ITUNES_ID = False

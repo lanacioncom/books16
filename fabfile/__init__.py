@@ -20,6 +20,7 @@ import issues
 import render
 import text
 import utils
+import deploy_s3
 
 import local_settings
 

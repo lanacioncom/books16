@@ -26,23 +26,9 @@
     {% block extra_css %}{% endblock extra_css %}
     {{ CSS.render('css/app.min.css') }}
 
-    {# Twitter #}
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:site" content="{{ COPY.share.twitter_handle }}">
-    <meta name="twitter:description" content="{{ COPY.share.twitter_text }}">
-    <meta name="twitter:image" content="{{ COPY.share.twitter_image_url }}" />
 
-    {# Facebook #}
-    <meta property="og:title" content="{{ COPY.share.facebook_title }}" />
-    <meta property="og:url" content="{{ COPY.share.share_url }}" />
-    <meta property="og:type" content="article" />
-    <meta property="og:description" content="{{ COPY.share.facebook_text }}" />
-    <meta property="og:image" content="{{ COPY.share.facebook_image_url }}" />
-    <meta property="og:site_name" content="NPR.org" />
-    <meta property="fb:app_id" content="{{ COPY.share.facebook_app_id }}" />
+    {% include '_meta.html' %}
 
-    {# Google News #}
-    <meta name="thumbnail" content="{{ COPY.share.google_news_image_url }}" />
 
     {% block extra_head %}
     {% endblock extra_head %}
@@ -57,33 +43,28 @@
       <p class="promoText">{{COPY.content.temp_page_text}}</p>
       <div class="promoLinksContainer">
         <ul>
-          <li class="promoLink"><a href="http://apps.npr.org/best-books-2015/#/_" target="_blank" class="btn btn-default">2015</a></li>
-          <li class="promoLink"><a href="http://apps.npr.org/best-books-2014/#/_" target="_blank" class="btn btn-default">2014</a></li>
-          <li class="promoLink"><a href="http://apps.npr.org/best-books-2013/#/_" target="_blank" class="btn btn-default">2013</a></li>
+          <li class="promoLink"><a href="./#link!!!" target="_blank" class="btn btn-default">2015</a></li>
+          <li class="promoLink"><a href="./#link!!!" target="_blank" class="btn btn-default">2014</a></li>
+          <li class="promoLink"><a href="./#link!!!" target="_blank" class="btn btn-default">2013</a></li>
         </ul>
       </div>
     </div>
 
 
-    <footer id="footer">
+     <footer id="footer">
         <div class="primary">
             <ul>
-                <li><a href="http://www.npr.org" data-action="Click Logo"><img src="assets/logo.png" alt="NPR Logo"></a></li>
-                <li class="news"><a href="http://www.npr.org/sections/news/">News</a></li>
-                <li class="artslife"><a href="http://www.npr.org/sections/arts/">Arts &amp; Life</a></li>
-                <li class="music"><a href="http://www.npr.org/music/">Music</a></li>
-                <li class="programs"><a href="http://www.npr.org/programs/">Programs</a></li>
-                <li class="listen"><a href="http://www.npr.org/listen/">Listen</a></li>
-                <li class="about"><a href="http://www.npr.org/about/">About</a></li>
+
+                {{ COPY.content.footer_list_kinks_1 }}
+
             </ul>
         </div>
         <div class="secondary">
-            <p>&copy;2016 NPR</p>
+            <p>&copy;{{ COPY.content.copyright }}</p>
             <ul>
-                <li id="footerContact"><a href="http://help.npr.org/npr/includes/customer/npr/custforms/contactus.aspx">Contact</a></li>
-                <li><a href="http://www.npr.org/about/termsofuse.html">Terms of Use</a></li>
-                <li><a href="http://www.npr.org/about/privacypolicy.html">Privacy</a></li>
-                <li><a href="http://thin.npr.org/">Text-Only</a></li>
+            
+                {{ COPY.content.footer_list_kinks_2 }}
+
             </ul>
         </div>
     </footer>
