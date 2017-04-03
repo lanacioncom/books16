@@ -293,3 +293,10 @@ def shiva_the_destroyer():
 
             if app_config.DEPLOY_SERVICES:
                 servers.nuke_confs()
+
+
+@task
+def deploy_ln():
+    update()
+    render.render_all()
+    deploy_s3.deploy_s3()

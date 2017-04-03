@@ -18,6 +18,7 @@ import local_settings
 import app_config
 import flat
 
+
 def get_bucket(bucket_name='libros.lanacion.com.ar'):
     
     access_key = os.environ["aws_access_key_id"]
@@ -78,6 +79,11 @@ def deploy_s3():
 
     # text = bucket.new_key("xxx/testxxx.txt")
     # text.set_contents_from_string('Hello World!')
+
+    # servers.fabcast('text.update')
+    # servers.fabcast('data.update')
+    # servers.fabcast('assets.sync')
+    # update()
 
     deploy_folder(
         app_config.S3_BUCKET,
