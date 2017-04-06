@@ -660,30 +660,25 @@ def load_images():
         else:
             # Request the image.
             r = requests.get(book_url % book['isbn'])
-            # Write the image to www using the slug as the filename.
-            with open(imagepath, 'wb') as writefile:
-                writefile.write(r.content)
 
-        # file_size = os.path.getsize(imagepath)
-        # if file_size < 10000:
-        #     logger.info('(%s): Image not available from Baker and Taylor, using NPR book page' % book['title'])
-        #     url = 'http://www.npr.org/%s' % book['book_seamus_id']
-        #     npr_r = requests.get(url)
-        #     soup = BeautifulSoup(npr_r.content, 'html.parser')
-        #     try:
-        #         if book['title'] == 'The Three-Body Problem':
-        #             alt_img_url = 'http://media.npr.org/assets/bakertaylor/covers/t/the-three-body-problem/9780765377067_custom-d83e0e334f348e6c52fe5da588ec3448921af64f-s600-c85.jpg'
-        #         else:
-        #             alt_img_url = soup.select('.bookedition .image img')[0].attrs.get('src').replace('s99', 's400')
-        #         logger.info('LOG (%s): Getting alternate image from %s' % (book['title'], alt_img_url))
-        #         alt_img_resp = requests.get(alt_img_url)
-        #         with open(imagepath, 'wb') as writefile:
-        #             writefile.write(alt_img_resp.content)
-        #     except IndexError:
-        #         logger.info('ERROR (%s): Image not available on NPR book page either (%s)' % (book['title'], url))
+            if r.status_code == 200:
+                # Write the image to www using the slug as the filename.
+                with open(imagepath, 'wb') as writefile:
+                    writefile.write(r.content)
+                    print(imagepath)
+                    print(r.status_code)
+            else:
+                print(u"NO se encontró: {0} \n ** Status {1} **".format(imagepath, r.status_code))
+                pass
 
-        image = Image.open(imagepath)
-        image.save(imagepath, optimize=True, quality=75)
+
+
+        if os.path.exists(imagepath) and os.path.getsize(imagepath) > 1:
+            # print(os.path.getsize(imagepath))
+            # print(imagepath)
+            image = Image.open(imagepath)
+            image.save(imagepath, optimize=True, quality=75)
+        
 
     logger.info("Load Images End.")
 
