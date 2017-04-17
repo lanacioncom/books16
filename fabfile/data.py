@@ -620,9 +620,6 @@ def load_images():
     Eschews the API for a magic URL pattern, which is faster.
     """
 
-    # Secrets.
-    # secrets = app_config.get_secrets()
-
     # Open the books JSON.
     with open('www/static-data/books.json', 'rb') as readfile:
         books = json.loads(readfile.read())
@@ -644,16 +641,6 @@ def load_images():
         # Construct the URL with secrets and the ISBN.
         book_url = "http://content.cuspide.com/getcover.ashx?ISBN=%s&size=3"
 
-        # params = {
-        #     'UserID': secrets['BAKER_TAYLOR_USERID'],
-        #     'Password': secrets['BAKER_TAYLOR_PASSWORD'],
-        #     'Value': book['isbn'],
-        #     'Return': 'T',
-        #     'Type': 'L'
-        # }
-
-        # r = requests.get(book_url, params=params)
-
         path = 'www/assets/cover'
         if not os.path.exists(path):
             os.makedirs(path)
@@ -666,22 +653,25 @@ def load_images():
         else:
             # Request the image.
             r = requests.get(book_url % book['isbn'])
-
+            print "status: %s" % r.status_code
             if r.status_code == 200:
                 # Write the image to www using the slug as the filename.
                 with open(imagepath, 'wb') as writefile:
                     writefile.write(r.content)
-                    print(imagepath)
-                    print(r.status_code)
+
             else:
-                print(u"NO se encontró: {0} \n ** Status {1} **".format(imagepath, r.status_code))
+                print(u"Image not available: {0} \n ** Status {1} **".format(imagepath, r.status_code))
+                
+                # Set dafaul cover for this image
+                shutil.copy("www/images/no_image.jpg", imagepath)
+                
                 pass
 
 
 
         if os.path.exists(imagepath) and os.path.getsize(imagepath) > 1:
-            print(os.path.getsize(imagepath))
-            print(imagepath)
+            # print(os.path.getsize(imagepath))
+            # print(imagepath)
             image = Image.open(imagepath)
             image.save(imagepath, optimize=True, quality=75)
         

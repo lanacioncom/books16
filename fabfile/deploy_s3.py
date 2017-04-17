@@ -65,9 +65,9 @@ def deploy_folder(bucket_name, src, dst, headers={}, ignore=[]):
             to_deploy.append((src_path, dst_path))
     
     bucket = get_bucket(bucket_name)
-    print bucket_name
-    text = bucket.new_key("oo/testxxx.txt")
-    text.set_contents_from_string('Hello World!')
+    # print bucket_name
+    # text = bucket.new_key("oo/testxxx.txt")
+    # text.set_contents_from_string('Hello World!')
     
     for src, dst in to_deploy:
         flat.deploy_file(bucket, src, dst, headers)
