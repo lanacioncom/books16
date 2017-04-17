@@ -51,7 +51,7 @@ An environment points to both a server and an S3
 bucket.
 """
 
-logging.basicConfig(format=app_config.LOG_FORMAT)
+logging.basicConfig(filename=app_config.LOG_FILE_NAME, format=app_config.LOG_FORMAT)
 logger = logging.getLogger(__name__)
 
 @task

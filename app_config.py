@@ -170,6 +170,7 @@ Logging
 """
 LOG_FORMAT = '%(levelname)s:%(name)s:%(asctime)s: %(message)s'
 LOG_LEVEL = None
+LOG_FILE_NAME="DEBUG.log"
 
 # Override
 try:

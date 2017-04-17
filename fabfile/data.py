@@ -379,7 +379,7 @@ class Book(object):
         """
         Get links for a book from NPR.org book page
         """
-        book_page_url = 'http://www.npr.org/%s' % value
+        book_page_url = 'http://libros.lanacion.com.ar/%s' % value
         logger.debug('%s: Getting links from %s' % (self.title, book_page_url))
         r = requests.get(book_page_url)
         soup = BeautifulSoup(r.content, 'html.parser')
@@ -554,6 +554,12 @@ def parse_books_csv():
             logger.error('no isbn for title: %s' % book['title'])
             continue
 
+        if book['isbn'].find("-") != -1:
+            book['isbn'] = book['isbn'].replace("-", "")
+            logger.error('ISBN has special chart "-", was changed to: %s' % book['isbn'])
+            
+            # continue
+
         # Init a book class, passing our data as kwargs.
         # The class constructor handles cleaning of the data.
         try:
@@ -674,8 +680,8 @@ def load_images():
 
 
         if os.path.exists(imagepath) and os.path.getsize(imagepath) > 1:
-            # print(os.path.getsize(imagepath))
-            # print(imagepath)
+            print(os.path.getsize(imagepath))
+            print(imagepath)
             image = Image.open(imagepath)
             image.save(imagepath, optimize=True, quality=75)
         
