@@ -377,17 +377,22 @@ h1 + #story-meta { margin-top: -11px; }
         margin: 0;
         // background-color: @light-gray;
         // color: @pine;
-        background-color: @pine;
+        // background-color: @pine;
+        background-color: @tags_bg;
         color: @light-gray;
         font-size: 14px;
         border-radius: 0px;
+        border-color: @header_bg;
+
         @media screen and (min-width: 480px) {
             width:100px;
+            color: @light-gray;
         }
-
-        &:hover {
-            background-color: @dark-gray;
-        }
+        &:hover{
+            background-color: lighten(@tags_bg, 4%);
+            // text-decoration:underline;
+            // color:white;
+       }
     }
 
     // &.grid-active .btn.btn-default.grid,
@@ -956,8 +961,12 @@ h1 + #story-meta { margin-top: -11px; }
         box-shadow: none;
         border-radius: none;
         outline: none;
-        color: @pine;
-        background-color: lighten(@pine, 45%);
+        // color: @pine;
+        // background-color: lighten(@pine, 45%);
+        
+        background-color: lighten(@tags_bg, 10%);
+        color:white;
+
         &:hover{
             text-decoration:underline;
         }
