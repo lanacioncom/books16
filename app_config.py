@@ -30,7 +30,8 @@ except ImportError:
     pass
 
 # Project name to be used in file paths
-PROJECT_FILENAME = '2017'
+# PROJECT_FILENAME = '2017'
+PROJECT_FILENAME = PROJECT_SLUG
 
 # The name of the repository containing the source
 REPOSITORY_NAME = 'books16'
@@ -40,7 +41,8 @@ REPOSITORY_ALT_URL = None # 'git@bitbucket.org:nprapps/%s.git' % REPOSITORY_NAME
 
 # Project name used for assets rig
 # Should stay the same, even if PROJECT_SLUG changes
-ASSETS_SLUG = '2017'
+# ASSETS_SLUG = '2017'
+ASSETS_SLUG = PROJECT_SLUG
 
 """
 DEPLOYMENT

@@ -552,11 +552,12 @@ def parse_books_csv():
 
         if book['isbn'] == "":
             logger.error('no isbn for title: %s' % book['title'])
+            book['isbn'] = None
             continue
 
-        if book['isbn'].find("-") != -1:
+        if book['isbn'].find("-") > -1:
             book['isbn'] = book['isbn'].replace("-", "")
-            logger.error('ISBN has special chart "-", was changed to: %s' % book['isbn'])
+            logger.debug('ISBN has special chart "-", was changed to: %s' % book['isbn'])
             
             # continue
 
@@ -634,7 +635,7 @@ def load_images():
             logger.warning('found book with no title')
             continue
 
-        if 'isbn' not in book or book['isbn'] == "":
+        if 'isbn' not in book or book['isbn'] == "" or book['isbn'] == None:
             logger.warning('This book has no isbn: %s' % book['title'])
             continue
 
@@ -669,9 +670,10 @@ def load_images():
 
 
 
+        print("imagepath")
+        print(imagepath)
         if os.path.exists(imagepath) and os.path.getsize(imagepath) > 1:
             # print(os.path.getsize(imagepath))
-            # print(imagepath)
             image = Image.open(imagepath)
             image.save(imagepath, optimize=True, quality=75)
         
