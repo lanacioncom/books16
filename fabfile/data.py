@@ -524,6 +524,7 @@ def get_tags():
 
         SLUGS_TO_TAGS[slug] = tag
         TAGS_TO_SLUGS[tag.lower()] = slug
+        # print(tag.lower())
 
 def parse_books_csv():
     """
@@ -552,12 +553,11 @@ def parse_books_csv():
 
         if book['isbn'] == "":
             logger.error('no isbn for title: %s' % book['title'])
-            book['isbn'] = None
             continue
 
         if book['isbn'].find("-") > -1:
             book['isbn'] = book['isbn'].replace("-", "")
-            logger.debug('ISBN has special chart "-", was changed to: %s' % book['isbn'])
+            # logger.debug('ISBN has special chart "-", was changed to: %s' % book['isbn'])
             
             # continue
 
@@ -571,6 +571,7 @@ def parse_books_csv():
                 e))
             continue
 
+        # print b.title
         for tag in b.tags:
             if not tags.get(tag):
                 tags[tag] = 1
@@ -613,6 +614,18 @@ def load_books():
     parse_books_csv()
     logger.info("end load_books")
 
+def save_img(url, imagepath):
+    r = requests.get(url)
+    logger.info(u"status: %s" % r.status_code)
+    if r.status_code == 200:
+        # Write the image to www using the slug as the filename.
+        with open(imagepath, 'wb') as writefile:
+            writefile.write(r.content)
+        return True
+    else:
+        logger.warning(u"Image not available: {0} \n Destination: {1} \n ** Status {2} **".format(url, imagepath, r.status_code))
+        return False
+
 
 @task
 def load_images():
@@ -653,30 +666,27 @@ def load_images():
 
         else:
             # Request the image.
-            r = requests.get(book_url % book['isbn'])
-            print "status: %s" % r.status_code
-            if r.status_code == 200:
-                # Write the image to www using the slug as the filename.
-                with open(imagepath, 'wb') as writefile:
-                    writefile.write(r.content)
+            img_url = book_url % book['isbn']
+            image_saved = save_img(img_url, imagepath)
+            if not image_saved and book["image_scr"] != "":
+                image_saved = save_img(book["image_scr"], imagepath)
+                if not image_saved:
+                    logger.warning("Imposible to get Image, set default cover for : %s" % book['slug'])
 
-            else:
-                print(u"Image not available: {0} \n ** Status {1} **".format(imagepath, r.status_code))
-                
-                # Set dafaul cover for this image
-                shutil.copy("www/images/no_image.jpg", imagepath)
-                
-                pass
-
-
-
-        # print("imagepath")
-        # print(imagepath)
-        if os.path.exists(imagepath) and os.path.getsize(imagepath) > 1:
+        if os.path.exists(imagepath) and os.path.getsize(imagepath) > 500:
+            # print(imagepath)
             # print(os.path.getsize(imagepath))
+            # print(os.path.getsize("www/images/no_image.jpg"))
             image = Image.open(imagepath)
-            image.save(imagepath, optimize=True, quality=75)
-        
+            if image.mode == "P":
+                logger.error(u"Image mode: %s" % image.mode)
+                # logger.error(u"%s" % book['slug'])
+                shutil.copy("www/images/no_image.jpg", imagepath)
+            else:
+                image.save(imagepath, optimize=True, quality=75)
+        else:
+            shutil.copy("www/images/no_image.jpg", imagepath)
+
 
     logger.info("Load Images End.")
 
