@@ -5,31 +5,34 @@
 
     {# Twitter #}
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:site" content="{{ twitter_handle }}">
-    <meta name="twitter:image" content="{{ tag_thumb }}" />
+    <meta name="twitter:site" content="{{ COPY.share.twitter_handle }}">
+    <meta name="twitter:description" content="{{ COPY.share.twitter_text }}">
+    <meta name="twitter:image" content="{{ COPY.share.twitter_image_url }}" />
 
     {# Facebook #}
-    <meta property="og:title" content="NPR's Best Books of 2016 - {{ tag.value }}" />
+    <meta property="og:title" content="{{ COPY.content.header_title }} - {{ tag.value }}" />
     <meta property="og:url" content="{{ S3_BASE_URL }}/tag_share/{{ tag.key }}.html" />
     <meta property="og:type" content="article" />
     <meta property="og:description" content="{{ tag.description }}" />
-    <meta property="og:image" content="{{ tag_thumb }}" />
+    <!-- <meta property="og:image" content="{{ tag_thumb }}" /> -->
+    <meta property="og:image" content="{{ COPY.share.twitter_image_url }}" />
     {% if thumb_width and thumb_height%}
         <meta property="og:image:width" content="{{ thumb_width }}" />
         <meta property="og:image:height" content="{{ thumb_height }}" />
     {% endif %}
 
 
-    <meta property="og:site_name" content="NPR.org" />
+    <meta property="og:site_name" content="LIBROS.lanacion.com.ar" />
     <meta property="fb:app_id" content="{{ COPY.share.facebook_app_id }}" />
 
     {# Google News #}
-    <meta name="thumbnail" content="{{ tag_thumb }}" />
+    <!-- <meta name="thumbnail" content="{{ tag_thumb }}" /> -->
+    <meta name="thumbnail" content="{{ COPY.share.twitter_image_url }}" />
 
     {% if not DEBUG %}
     <script>
     window.location = '{{ S3_BASE_URL }}/#/tag/{{ tag.key }}';
-    </script>
+    </script> 
     {% endif %}
 </head>
 

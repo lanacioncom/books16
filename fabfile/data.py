@@ -670,8 +670,8 @@ def load_images():
 
 
 
-        print("imagepath")
-        print(imagepath)
+        # print("imagepath")
+        # print(imagepath)
         if os.path.exists(imagepath) and os.path.getsize(imagepath) > 1:
             # print(os.path.getsize(imagepath))
             image = Image.open(imagepath)
