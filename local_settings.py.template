@@ -2,14 +2,20 @@ import logging
 import os
 
 os.environ["DEPLOYMENT_TARGET"] = "production"
-os.environ["aws_access_key_id"] = "XXXXXXXXXXXXX"
-os.environ["aws_secret_access_key"] = "XXXXXXXXXXXXX+XXXXXXXXXXXXX"
+os.environ["aws_access_key_id"] = "XXXXXXXXXXXXXXXX"
+os.environ["aws_secret_access_key"] = "XXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 
+# print __DEPLOYMENT_TARGET
 
-COPY_GOOGLE_DOC_KEY = 'XXXXXXXXXXXXX'
-DATA_GOOGLE_DOC_KEY="XXXXXXXXXXXXX"
+COPY_GOOGLE_DOC_KEY = 'XXXXXXXXXXXXXXXXXXXXXXXX'
+DATA_GOOGLE_DOC_KEY="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 
-GOOGLE_OAUTH_CREDENTIALS_PATH = './._google_oauth_credentials'
- 
+GOOGLE_OAUTH_CREDENTIALS_PATH = './._credentials'
+
+PROJECT_SLUG = '2017'
 
 USE_ITUNES_ID = False
+# LOG_LEVEL = logging.INFO
+# LOG_LEVEL = logging.DEBUG
+# LOG_LEVEL = logging.WARNING
+LOG_LEVEL = logging.ERROR

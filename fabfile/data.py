@@ -32,12 +32,15 @@ from facebook import GraphAPI
 from twitter import Twitter, OAuth
 from csvkit.py2 import CSVKitDictReader, CSVKitDictWriter
 
+from logger import get_logger
+logger = get_logger(__name__)
+
 BASEPATH = os.path.dirname(os.path.abspath(__file__))
 BASEPATH = os.path.join(BASEPATH, "..")
 
-logging.basicConfig(format=app_config.LOG_FORMAT)
-logger = logging.getLogger(__name__)
-logger.setLevel(app_config.LOG_LEVEL)
+# logging.basicConfig(format=app_config.LOG_FORMAT)
+# logger = logging.getLogger(__name__)
+# logger.setLevel(app_config.LOG_LEVEL)
 
 ITUNES_URL_ID_REGEX = re.compile(r'id(\d+)\??')
 
@@ -248,6 +251,7 @@ class Book(object):
     hide_ibooks = False
     title = None
     author = None
+    editorial = None
     genre = None
     reviewer = None
     text = None
@@ -279,6 +283,7 @@ class Book(object):
         self.slug = self._slugify(kwargs['title'])
 
         self.author = self._process_text(kwargs['author'])
+        self.editorial = self._process_text(kwargs['editorial'])
         self.hide_ibooks = kwargs['hide_ibooks']
         self.text = self._process_text(kwargs['text'])
         self.reviewer = self._process_text(kwargs['reviewer'])
@@ -509,7 +514,7 @@ def get_tags():
     """
     Extract tags from COPY doc.
     """
-    print 'Extracting tags from COPY'
+    logger.info('Extracting tags from COPY')
 
     book = xlrd.open_workbook(os.path.join(BASEPATH, app_config.COPY_PATH))
 
@@ -638,7 +643,7 @@ def load_images():
     with open('www/static-data/books.json', 'rb') as readfile:
         books = json.loads(readfile.read())
 
-    print "Start load_images(): %i books." % len(books)
+    logger.info("Start load_images(): %i books." % len(books))
 
     # Loop.
     for book in books:

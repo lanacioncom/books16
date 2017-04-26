@@ -13,9 +13,12 @@ from time import sleep
 
 import app_config
 
-logging.basicConfig(format=app_config.LOG_FORMAT)
-logger = logging.getLogger(__name__)
-logger.setLevel(app_config.LOG_LEVEL)
+from logger import get_logger
+logger = get_logger(__name__)
+
+# logging.basicConfig(format=app_config.LOG_FORMAT)
+# logger = logging.getLogger(__name__)
+# logger.setLevel(app_config.LOG_LEVEL)
 
 def get_auth():
     """

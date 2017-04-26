@@ -1298,10 +1298,32 @@ h1 + #story-meta { margin-top: -11px; }
         margin-bottom: @line-height-computed / 2;
     }
 
-    .author, .reviewer, .external-link {
+    .author, .reviewer, .external-link, .editorial {
         color: @pine;
         font-size: 13px;
         line-height: 1.3em;
+    }
+    .author, .editorial {
+        display: inline-block;
+        margin-right: 5px;
+    }
+    
+    .editorial {
+        padding-left: 5px;
+        position: relative;
+        &:before{
+            content: "-";
+            position: relative;
+            left: -5px;
+        }
+
+        @media screen and (max-width: @screen-sm){
+            padding-left: 0px;
+            &:before{
+                display: none;
+
+            }
+        }
     }
 
     .reviewer {

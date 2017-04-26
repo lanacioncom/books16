@@ -170,13 +170,14 @@ VIZ_GOOGLE_ANALYTICS = {
 """
 Logging
 """
-LOG_FORMAT = '%(levelname)s:%(name)s:%(asctime)s: %(message)s'
-LOG_LEVEL = None
-LOG_FILE_NAME="DEBUG.log"
+# LOG_FORMAT = '%(levelname)s:%(name)s:%(asctime)s: %(message)s'
+LOG_FORMAT = '%(levelname)s:%(name)s:%(funcName)s(L%(lineno)d):%(asctime)s: %(message)s'
+LOG_LEVEL = logging.ERROR
+LOG_FILE_NAME = "%s.log" % PROJECT_SLUG
 
 # Override
 try:
-    from LOG_LEVEL import LOG_LEVEL
+    from local_settings import LOG_LEVEL
 except ImportError:
     pass
 
@@ -247,7 +248,7 @@ def configure_targets(deployment_target):
         SERVER_BASE_URL = '//%s/%s' % (SERVERS[0], PROJECT_SLUG)
         SERVER_LOG_PATH = '/var/log/%s' % PROJECT_FILENAME
         DEBUG = False
-        LOG_LEVEL = logging.ERROR
+        # LOG_LEVEL = logging.ERROR
         ASSETS_MAX_AGE = 86400
     elif deployment_target == 'random_prod':
         secrets = get_secrets()
@@ -261,7 +262,7 @@ def configure_targets(deployment_target):
         SERVER_LOG_PATH = '/var/log/%s' % PROJECT_FILENAME
         DEBUG = False
         # LOG_LEVEL = logging.ERROR
-        LOG_LEVEL = logging.INFO
+        # LOG_LEVEL = logging.INFO
         ASSETS_MAX_AGE = 86400
     elif deployment_target == 'staging':
         S3_BUCKET = STAGING_S3_BUCKET
@@ -271,7 +272,7 @@ def configure_targets(deployment_target):
         SERVER_BASE_URL = '//%s/%s' % (SERVERS[0], PROJECT_SLUG)
         SERVER_LOG_PATH = '/var/log/%s' % PROJECT_FILENAME
         DEBUG = False
-        LOG_LEVEL = logging.INFO
+        # LOG_LEVEL = logging.INFO
         ASSETS_MAX_AGE = 20
     else:
         S3_BUCKET = None
@@ -281,7 +282,7 @@ def configure_targets(deployment_target):
         SERVER_BASE_URL = '//127.0.0.1:8001/%s' % PROJECT_SLUG
         SERVER_LOG_PATH = '/tmp'
         DEBUG = True
-        LOG_LEVEL = logging.INFO
+        # LOG_LEVEL = logging.INFO
         ASSETS_MAX_AGE = 20
 
     DEPLOYMENT_TARGET = deployment_target

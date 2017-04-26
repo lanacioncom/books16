@@ -18,6 +18,7 @@
             <div class="modal-text">
                 <h4 class="modal-title" id="myModalLabel"><%= book.title %></h4>
                 <% if(book.author) { %><p class="author"><%= book.author %></p> <% } %>
+                <% if(book.editorial) { %><p class="editorial">Editorial <%= book.editorial %></p> <% } %>
                 <% if(book.genre) { %><p class="genre"><strong><%= COPY.content.genre %> </strong><%= book.genre %></p> <% } %>
 
                 <!-- Tags -->
@@ -92,7 +93,11 @@
                 <% if(book.external_links.length > 0) { %>
                     <p class="external-links-intro<% if (!book.links.length) { %> first<% } %>"><%= COPY.content.external_links_intro %></p>
                     <ul class="external-links">
-                        <% _.each(book.external_links, function(link, index, list){ %><%= link %><% }); %>
+                        <% _.each(book.external_links, function(link, index, list){ %>
+                            <li>
+                            <%= link %>
+                            </li>
+                        <% }); %>
                     </ul>
                 <% } %>
             </div>

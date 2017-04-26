@@ -3,6 +3,9 @@
 import boto
 from boto.s3.connection import OrdinaryCallingFormat
 
+from logger import get_logger
+logger = get_logger(__name__)
+
 """
 Utilities used by multiple commands.
 """

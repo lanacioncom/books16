@@ -24,6 +24,11 @@ import deploy_s3
 
 import local_settings
 
+from logger import get_logger
+logger = get_logger(__name__)
+
+
+
 if app_config.DEPLOY_TO_SERVERS:
     import servers
 
@@ -51,8 +56,10 @@ An environment points to both a server and an S3
 bucket.
 """
 
-logging.basicConfig(filename=app_config.LOG_FILE_NAME, format=app_config.LOG_FORMAT)
-logger = logging.getLogger(__name__)
+# # logging.basicConfig(filename=app_config.LOG_FILE_NAME, format=app_config.LOG_FORMAT)
+# logging.basicConfig(filename="logg.log", format=app_config.LOG_FORMAT)
+# logger = logging.getLogger(__name__)
+
 
 @task
 def random_prod():
