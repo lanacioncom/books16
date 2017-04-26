@@ -17,7 +17,7 @@
 
             <div class="modal-text">
                 <h4 class="modal-title" id="myModalLabel"><%= book.title %></h4>
-                <% if(book.author) { %><p class="author">De <%= book.author %></p> <% } %>
+                <% if(book.author) { %><p class="author"><%= book.author %></p> <% } %>
                 <% if(book.genre) { %><p class="genre"><strong><%= COPY.content.genre %> </strong><%= book.genre %></p> <% } %>
 
                 <!-- Tags -->
