@@ -19,8 +19,8 @@ import xlrd
 import logging
 import time
 import shutil
+import time
 from urllib import urlencode
-
 # Wrap sys.stdout into a StreamWriter to allow writing unicode. See http://stackoverflow.com/a/4546129
 sys.stdout = codecs.getwriter(locale.getpreferredencoding())(sys.stdout)
 
@@ -31,9 +31,12 @@ from fabric.api import task
 from facebook import GraphAPI
 from twitter import Twitter, OAuth
 from csvkit.py2 import CSVKitDictReader, CSVKitDictWriter
+from PIL import ImageFile
+ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 from logger import get_logger
 logger = get_logger(__name__)
+
 
 BASEPATH = os.path.dirname(os.path.abspath(__file__))
 BASEPATH = os.path.join(BASEPATH, "..")
@@ -626,6 +629,7 @@ def save_img(url, imagepath):
         # Write the image to www using the slug as the filename.
         with open(imagepath, 'wb') as writefile:
             writefile.write(r.content)
+        time.sleep(1)
         return True
     else:
         logger.warning(u"Image not available: {0} \n Destination: {1} \n ** Status {2} **".format(url, imagepath, r.status_code))
@@ -672,23 +676,31 @@ def load_images():
         else:
             # Request the image.
             img_url = book_url % book['isbn']
-            image_saved = save_img(img_url, imagepath)
-            if not image_saved and book["image_scr"] != "":
-                image_saved = save_img(book["image_scr"], imagepath)
-                if not image_saved:
-                    logger.warning("Imposible to get Image, set default cover for : %s" % book['slug'])
+            try:
+                image_saved = save_img(img_url, imagepath)
+                if not image_saved and book["image_scr"] != "":
+                    image_saved = save_img(book["image_scr"], imagepath)
+                    if not image_saved:
+                        logger.warning("Imposible to get Image, set default cover for : %s" % book['slug'])
+            except Exception as e:
+                logger.error("Imposible to get Image %s, ERROR: %s" % (book['slug'], e))
 
         if os.path.exists(imagepath) and os.path.getsize(imagepath) > 500:
             # print(imagepath)
             # print(os.path.getsize(imagepath))
             # print(os.path.getsize("www/images/no_image.jpg"))
-            image = Image.open(imagepath)
-            if image.mode == "P":
-                logger.error(u"Image mode: %s" % image.mode)
-                # logger.error(u"%s" % book['slug'])
-                shutil.copy("www/images/no_image.jpg", imagepath)
-            else:
-                image.save(imagepath, optimize=True, quality=75)
+            try:
+                image = Image.open(imagepath)
+                if image.mode == "P":
+                    logger.error(u"Image mode: %s" % image.mode)
+                    # logger.error(u"%s" % book['slug'])
+                    shutil.copy("www/images/no_image.jpg", imagepath)
+                else:
+                    image.save(imagepath, optimize=True, quality=75)
+            
+            except Exception as e:
+                logger.error("Imposible to open Image %s, ERROR: %s" % (book['slug'], e))
+            
         else:
             shutil.copy("www/images/no_image.jpg", imagepath)
 

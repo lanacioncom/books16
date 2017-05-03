@@ -8,6 +8,7 @@ cd $SCRIPTPATH
 
 source $SCRIPTPATH/.venv/bin/activate
 
-fab data.update
-fab render
+# fab data.update
+# fab render
+fab deploy_ln
 
