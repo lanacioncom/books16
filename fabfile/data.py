@@ -456,6 +456,7 @@ class Book(object):
         """
         Use itunes search API
         """
+        print "Sleeping 1..."
         time.sleep(1)
         itunes_id = None
         search_api_tpl = 'https://itunes.apple.com/search'
