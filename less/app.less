@@ -62,8 +62,10 @@ nav, .col-md-12, header, footer, .ln_header {
         //padding-right: 30px;
     }
     @media (max-width: @screen-xs-max) {
+        // background-position: 350px 50px;
         padding-left: 15px;
         padding-right: 15px;
+    
     }
 }
 
@@ -171,48 +173,43 @@ header {
     // background: #f5f5f5;
     position: relative;
     // background: @pine url('../images/pattern1.jpg');
-    background: @header_bg;
+    // background: @header_bg;
+    background: @header_bg url('../images/banner_web_f.transp700.png') 100% 20px no-repeat;
+    background-size: 600px;
     width: 100%;
     padding-top: 5px;
-    padding-bottom: 40px;
+    padding-bottom: 50px;
     // border-bottom: 3px solid @pine-fade1;
     border-bottom: 1px solid #000;
 
-    // &::after {
-    //     content: "";
-    //     background: url(image.jpg);
-    //     background: @pine url('../images/pattern1.jpg');
-    //     opacity: 1;
-    //     top: 0;
-    //     left: 0;
-    //     bottom: 0;
-    //     right: 0;
-    //     position: absolute;
-    //     z-index: -1;   
-    //     background-size: 20%;
-
-    //           -webkit-filter: url(#monochrome);
-    //       filter:  url(#monochrome);
-    //       box-shadow: #224 0.2em 0.2em 0.6em 0.1em;
-    // }
 
     .logo_ideas {
         width: 85px;
         position: relative;
         left: -5px;
     }
+    
+    .seo_tag_hidden{
+        /* hidden position, only for seo */
+        position: absolute;
+        top: -5000px;
+    }
 
     h1 {
         font-size: 48px;
         // font-weight: bold;
-        font-family: @font-family-thin;
+        font-family: @font-family-medium;
         // margin-bottom: @line-height-computed / 2;
         margin-bottom: 0;
         color: @header-h1;
+        font-weight: normal;
         // background-color: #fff;
         padding: 0px 0px;
         margin-top: 10px;
         margin-left: 0;
+        span {
+            color: @blue_nacion;
+        }
     }
     h2 {
         font-size: 16px;
@@ -274,6 +271,8 @@ header {
     //     // height: 290px;
     // }
     @media screen and (max-width: 1200px){
+        background-position: 550px;
+        
         .header-wrapper {
             //padding-left: 15px;
         }
@@ -297,15 +296,31 @@ header {
         }
     }
 
-
     @media screen and (max-width: @screen-sm){
+        
+        background-position: 350px 84px;
         padding-bottom: 10px;
         
         .header-wrapper {
             padding-right: 0;
             padding-left:0;
             padding-top:20px;
+
+            h1 {
+
+                span {
+                    display: block;
+                }
+            }
         }
+    }
+    @media screen and (max-width: @screen-xs-max){
+        
+        background-position: 320px 60px;
+    }
+    @media screen and (max-width: 300px){
+        
+        background-image: none;
     }
 
     @media screen and (max-width: 1299px)and(min-width: 1100px){
@@ -1946,6 +1961,8 @@ footer {
     //  .npr { display: block; }
     // }
     header {
+        background-position: 240px 40px;
+
         h1 { font-size: 36px; }
         h2 { font-size: 24px; }
     }

@@ -44,10 +44,16 @@
                                    -->      
                     
                     <% } %>
-
+<!--
+LIBRERIAS 
                     <a href="http://www.distalnet.com/busquedaRapida?perPage=15&sortBy=title&value=<%= book.title.replace(/\s/g, '+') %>" target="_blank" class="purchase-link" onclick="ANALYTICS.trackEvent('Distal_libros_click', '<%= book.slug %>');"><i class="icon icon-basket"></i>Distal libros</a>
                     
                     <a href="http://www.tematika.com/buscar.do?txtencoded=<%= book.isbn %>&claveDeBusqueda=porISBN&idSeccionPropia=1&optSeleccionada=ISBN&idSeccion=1&seccionDeBusqueda=En%20Tematika.com&texto=<%= book.isbn %>" target="_blank" class="purchase-link" onclick="ANALYTICS.trackEvent('Distal_libros_click', '<%= book.slug %>');"><i class="icon icon-basket"></i>Tematika</a>
+ -->
+
+
+
+
 
 <!-- 
                     <a href="http://www.cuspide.com/<%= book.isbn %>/<%= book.slug %>/" target="_blank" class="purchase-link" onclick="ANALYTICS.trackEvent('cúspide', '<%= book.slug %>');"><i class="icon icon-basket"></i>Cúspide</a>
