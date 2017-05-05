@@ -456,8 +456,6 @@ class Book(object):
         """
         Use itunes search API
         """
-        print "Sleeping 1..."
-        time.sleep(1)
         itunes_id = None
         search_api_tpl = 'https://itunes.apple.com/search'
         main_title = title.split(':')[0]
@@ -623,14 +621,21 @@ def load_books():
     parse_books_csv()
     logger.info("end load_books")
 
+
 def save_img(url, imagepath):
-    r = requests.get(url)
+    time.sleep(1)
+    print "sleeping 1... for: %s" % url
+    r = requests.get(url, verify=False)
+    print "imagepath: %s\n" % imagepath
+    print "Header conten-type: %s\n" % r.headers["content-type"]
+
     logger.info(u"status: %s" % r.status_code)
     if r.status_code == 200:
+        # if not r.headers["content-type"]:
+        #     print url
         # Write the image to www using the slug as the filename.
         with open(imagepath, 'wb') as writefile:
             writefile.write(r.content)
-        time.sleep(1)
         return True
     else:
         logger.warning(u"Image not available: {0} \n Destination: {1} \n ** Status {2} **".format(url, imagepath, r.status_code))
@@ -676,7 +681,9 @@ def load_images():
 
         else:
             # Request the image.
-            img_url = book_url % book['isbn']
+            img_url_scrap = book_url % book['isbn']
+            img_url = book["image_scr"] if book["image_scr"] != "" else img_url_scrap
+            
             try:
                 image_saved = save_img(img_url, imagepath)
                 if not image_saved and book["image_scr"] != "":
@@ -685,25 +692,37 @@ def load_images():
                         logger.warning("Imposible to get Image, set default cover for : %s" % book['slug'])
             except Exception as e:
                 logger.error("Imposible to get Image %s, ERROR: %s" % (book['slug'], e))
+                print("Imposible to get Image %s, ERROR: %s" % (book['slug'], e))
 
-        if os.path.exists(imagepath) and os.path.getsize(imagepath) > 500:
-            # print(imagepath)
-            # print(os.path.getsize(imagepath))
-            # print(os.path.getsize("www/images/no_image.jpg"))
+        if os.path.exists(imagepath) and os.path.getsize(imagepath) > 100:
+
             try:
+                """ Resizing and optimizing IMGS """
+                
                 image = Image.open(imagepath)
+                
+                basewidth = 300
+                width, height = image.size
+                wpercent = (basewidth/float(width))
+                hsize = int((float(height)*float(wpercent)))
+                
                 if image.mode == "P":
                     logger.error(u"Image mode: %s" % image.mode)
-                    # logger.error(u"%s" % book['slug'])
-                    shutil.copy("www/images/no_image.jpg", imagepath)
+                    # shutil.copy("www/images/no_image.jpg", imagepath)
                 else:
-                    image.save(imagepath, optimize=True, quality=75)
+                    thumbnial = imagepath.replace(".jpg", "_thumbnail.jpg")
+                    
+                    if width > 300:
+                        image.resize((basewidth,hsize), Image.ANTIALIAS)
+                    
+                    image.save(thumbnial, optimize=True, quality=75)
             
             except Exception as e:
                 logger.error("Imposible to open Image %s, ERROR: %s" % (book['slug'], e))
             
         else:
-            shutil.copy("www/images/no_image.jpg", imagepath)
+            pass
+            # shutil.copy("www/images/no_image.jpg", imagepath)
 
 
     logger.info("Load Images End.")

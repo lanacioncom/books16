@@ -14,6 +14,7 @@ import logging
 import local_settings
 from authomatic.providers import oauth2
 from authomatic import Authomatic
+from datetime import datetime
 
 
 """
@@ -23,6 +24,8 @@ NAMES
 # Use dashes, not underscores!
 PROJECT_SLUG = '2017'
 
+d =  datetime.now()
+TIMESTAMP =  d.strftime("%s")
 # Allow override from local settings to test random_prod locally
 try:
     from local_settings import PROJECT_SLUG
