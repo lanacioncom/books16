@@ -645,8 +645,7 @@ def save_img(url, imagepath):
 @task
 def load_images():
     """
-    Downloads images from Baker and Taylor.
-    Eschews the API for a magic URL pattern, which is faster.
+    Downloads images from url defined on spreadsheet or cuspide with isbn.
     """
 
     # Open the books JSON.
@@ -710,19 +709,20 @@ def load_images():
                     logger.error(u"Image mode: %s" % image.mode)
                     # shutil.copy("www/images/no_image.jpg", imagepath)
                 else:
+                    
+                    image.save(imagepath, optimize=True, quality=75)
+                    """ resaizing img """
                     thumbnial = imagepath.replace(".jpg", "_thumbnail.jpg")
-                    
-                    if width > 300:
-                        image.resize((basewidth,hsize), Image.ANTIALIAS)
-                    
-                    image.save(thumbnial, optimize=True, quality=75)
-            
+                    resized = image.resize((basewidth,hsize), Image.ANTIALIAS)
+                    resized.save(thumbnial, optimize=True, quality=75)
+
             except Exception as e:
                 logger.error("Imposible to open Image %s, ERROR: %s" % (book['slug'], e))
             
         else:
-            pass
-            # shutil.copy("www/images/no_image.jpg", imagepath)
+            shutil.copy("www/images/no_image.jpg", imagepath)
+            shutil.copy("www/images/no_image.jpg", imagepath.replace(".jpg", "_thumbnail.jpg"))
+            shutil.copy("www/images/no_image.jpg", imagepath.replace(".jpg", "_ERROR.jpg"))
 
 
     logger.info("Load Images End.")
