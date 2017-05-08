@@ -693,7 +693,8 @@ def load_images():
                 logger.error("Imposible to get Image %s, ERROR: %s" % (book['slug'], e))
                 print("Imposible to get Image %s, ERROR: %s" % (book['slug'], e))
 
-        if os.path.exists(imagepath) and os.path.getsize(imagepath) > 100:
+        # if os.path.exists(imagepath) and os.path.getsize(imagepath) > 100:
+        if os.path.exists(imagepath) and os.path.getsize(imagepath) > 10:
 
             try:
                 """ Resizing and optimizing IMGS """
@@ -706,15 +707,14 @@ def load_images():
                 hsize = int((float(height)*float(wpercent)))
                 
                 if image.mode == "P":
-                    logger.error(u"Image mode: %s" % image.mode)
-                    # shutil.copy("www/images/no_image.jpg", imagepath)
-                else:
+                    image = image.convert('RGB')
+                    logger.warn(u"Image mode P: %s" % imagepath)
                     
-                    image.save(imagepath, optimize=True, quality=75)
-                    """ resaizing img """
-                    thumbnial = imagepath.replace(".jpg", "_thumbnail.jpg")
-                    resized = image.resize((basewidth,hsize), Image.ANTIALIAS)
-                    resized.save(thumbnial, optimize=True, quality=75)
+                image.save(imagepath, optimize=True, quality=75)
+                """ resaizing img """
+                thumbnial = imagepath.replace(".jpg", "_thumbnail.jpg")
+                resized = image.resize((basewidth,hsize), Image.ANTIALIAS)
+                resized.save(thumbnial, optimize=True, quality=75)
 
             except Exception as e:
                 logger.error("Imposible to open Image %s, ERROR: %s" % (book['slug'], e))
