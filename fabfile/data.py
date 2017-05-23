@@ -643,10 +643,33 @@ def save_img(url, imagepath):
 
 
 @task
+def delete_corrupted_images():
+    """
+    Removing corrupted images from cover folder.
+    """
+    import fnmatch
+
+    logger.info(u"Removing corrupted images from cover folder.")
+
+    path = 'www/assets/cover'
+    if os.path.exists(path):
+        for file in fnmatch.filter(os.listdir(path), '*_ERROR.*'):
+            if "_ERROR" in file:
+                path_file = "%s/%s" % (path, file.replace("_ERROR", ""))
+                path_file_error = "%s/%s" % (path, file)
+                path_file_thumbnail = "%s/%s" % (path, file.replace("_ERROR", "_thumbnail"))
+                
+                for f in [path_file, path_file_error, path_file_thumbnail]:                    
+                    if os.path.exists(f):
+                        os.remove(f)
+
+@task
 def load_images():
     """
     Downloads images from url defined on spreadsheet or cuspide with isbn.
     """
+    
+    delete_corrupted_images()
 
     # Open the books JSON.
     with open('www/static-data/books.json', 'rb') as readfile:
