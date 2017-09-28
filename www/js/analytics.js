@@ -26,7 +26,7 @@ var ANALYTICS = (function () {
         // ga('send', 'pageview');
 
         ga('create', 'UA-621326-122', {'name':'especiales'});
-        ga('especiales.send','pageview', location.pathname);
+        ga('especiales.send','pageview');
         ga('create', 'UA-621326-98', 'auto');
         ga('send', 'pageview');
 
