@@ -7,7 +7,7 @@
        <% if (book.teaser) { %>
         <div class="review hover"><%= book.teaser %><br /><div class="reviewer hover"><span class="reviewer-span">Leer la reseña de <strong><%= book.reviewer %>'<% if (book.reviewer[book.reviewer.length-1] != 's') { %>s<% } %></strong> &raquo;</span></div></div>
         <% } %>
-        <img src="assets/img/cover-loading.gif" data-src="assets/cover/<%= book.slug %>_thumbnail.jpg?v=<%= APP_CONFIG.TIMESTAMP %>" alt="<%= book.title %>"/>
+        <img src="assets/img/cover-loading.gif" data-src="<%= book.thumbnail %>" alt="<%= book.title %>"/>
     </div>
     </a>
 </div>

@@ -514,7 +514,13 @@ var resize = function() {
 }
 
 $(function() {
+    $.get( "http://localhost:8100/libros", function(data) {
+      window.BOOKS = data;
+      init();
+    });
+});
 
+function init() {
     // Set up the global variables.
     $body = $('body');
     $content = $('#content');
@@ -617,7 +623,8 @@ $(function() {
     // Set up the grid.
     _.delay(unveil_grid, 0);
 
-});
+}
+
 
 
 function checkOffset(){

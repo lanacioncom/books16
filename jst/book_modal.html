@@ -12,7 +12,7 @@
     <div class="modal-body-inner">
         <div class="modal-body clearfix">
             <div class="modal-book-cover">
-                <img id="book-image" src="assets/cover/<%= book.slug %>_thumbnail.jpg?v=<%= APP_CONFIG.TIMESTAMP %>" alt="<%= book.title %>"/>
+                <img id="book-image" src="<%= book.thumbnail %>" alt="<%= book.title %>"/>
             </div>
 
             <div class="modal-text">
@@ -81,23 +81,9 @@ LIBRERIAS
                     <% } %>
                 </p>
 
-                <% if (book.links.length > 0) { %>
-                <ul>
-                    <% _.each(book.links, function(link) { %>
-                    <li class="book-modal-links">
-                        <a href="<%= link.url %>" target="_blank">
-                            <strong>
-                            <% if (link.category) { %><%= link.category %><% if (link.title) { %>:<% } %><% } else { %>Feature:<% } %>
-                            </strong>
-                            <%= link.title %>
-                        </a>
-                    </li>
-                    <% }) %>
-                </ul>
-                <% } %>
                 <!-- External links -->
                 <% if(book.external_links.length > 0) { %>
-                    <p class="external-links-intro<% if (!book.links.length) { %> first<% } %>"><%= COPY.content.external_links_intro %></p>
+                    <p class="external-links-intro"><%= COPY.content.external_links_intro %></p>
                     <ul class="external-links">
                         <% _.each(book.external_links, function(link, index, list){ %>
                             <li>
