@@ -129,6 +129,11 @@ try:
 except ImportError:
     pass
 
+try:
+    from local_settings import API_URL
+except ImportError:
+    pass
+
 
 LINK_CATEGORY_MAP = {
     'Author Interviews': 'Interview',

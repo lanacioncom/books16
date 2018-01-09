@@ -19,3 +19,5 @@ USE_ITUNES_ID = False
 # LOG_LEVEL = logging.DEBUG
 # LOG_LEVEL = logging.WARNING
 LOG_LEVEL = logging.ERROR
+
+API_URL = 'http://localhost:8100/libros'

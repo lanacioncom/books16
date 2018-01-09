@@ -43,8 +43,10 @@ def index():
         context['featured'] = json.load(f)
 
      # Read the books JSON into the page.
-    with open('www/static-data/books.json', 'rb') as readfile:
-        context['books_js'] = readfile.read()
+
+    context['API_URL'] = app_config.API_URL
+    #with open('www/static-data/books.json', 'rb') as readfile:
+    #    context['books_js'] = readfile.read()
 
     return make_response(render_template('index.html', **context))
 

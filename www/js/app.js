@@ -514,7 +514,7 @@ var resize = function() {
 }
 
 $(function() {
-    $.get( "http://localhost:8100/libros", function(data) {
+    $.get(window.API_URL, function(data) {
       window.BOOKS = data;
       init();
     });
