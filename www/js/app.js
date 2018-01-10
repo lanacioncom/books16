@@ -56,7 +56,7 @@ var scroll_to = function($el) {
  * Jump back to the top of the page.
  */
 var back_to_top = function() {
-    $body.scrollTo($content, { duration:450 }, 'y');
+    document.getElementById('top').scrollIntoView();
     return false;
 };
 
