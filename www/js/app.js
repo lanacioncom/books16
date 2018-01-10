@@ -28,6 +28,7 @@ var $last;
 var $share_modal;
 var $large_ad;
 var $header;
+var $search;
 
 var next;
 var previous;
@@ -413,6 +414,7 @@ var on_book_modal_closed = function() {
         $('body').scrollTo(bodyPosition, { duration:1000 });
     }
 
+    clear_select2_search();
     return true;
 
 };
@@ -513,6 +515,11 @@ var resize = function() {
     $large_ad.height(height);
 }
 
+var clear_select2_search = function() {
+    $search.val(null);
+    $search.trigger("change");
+}
+
 $(function() {
     $.get(window.API_URL, function(data) {
       window.BOOKS = data;
@@ -560,13 +567,42 @@ function init() {
         }
         return book;
     }), 'sort_title');
+
+    var selectData = [];
     _.each(window.BOOKS_SORTED, function(book, i) {
         var book_list_content = window.JST["book_list_item"]({
             book: book,
             loop_index: i
         });
         $books_list.append(book_list_content);
+        selectData.push({id: book.slug, text: book.title})
     });
+
+    /** statrt select2 */
+    $search = $(".select2");
+    $search.select2({
+        data: selectData,
+        placeholder: "Buscar libro",
+        allowClear: true,
+        width: '100%'
+    })
+    .on("change", function(){
+        console.log(this.value);
+        if(this.value){
+            hasher.setHash('book', this.value);
+
+        }
+    });
+
+    $("#credits_btn").on("click", function(){
+        show_modal("")
+        show_modal(JST.creditos_modal({
+            MOBILE: (MOBILE)
+        }));
+        return false;
+    })
+    
+    clear_select2_search();
 
     // Event handlers.
     $body.on('click', '.filter .tag', on_tag_clicked);
