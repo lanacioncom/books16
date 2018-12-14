@@ -514,7 +514,9 @@ var resize = function() {
 }
 
 $(function() {
+ console.log('get data');
  $.get(window.API_URL, function(data) {
+    console.log('get data done');
     window.BOOKS = data;
     init();
   });

@@ -305,6 +305,6 @@ def shiva_the_destroyer():
 @task
 def deploy_ln():
     """ Doploy to lanacion.com.ar servers """
-    update()
+    #update()
     render.render_all()
     deploy_s3.deploy_s3()
