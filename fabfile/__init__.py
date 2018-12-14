@@ -122,7 +122,7 @@ def branch(branch_name):
 Running the app
 """
 @task
-def app(port='8000'):
+def app(port='8002'):
     """
     Serve app.py.
     """

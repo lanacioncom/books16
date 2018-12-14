@@ -514,7 +514,13 @@ var resize = function() {
 }
 
 $(function() {
+ $.get(window.API_URL, function(data) {
+    window.BOOKS = data;
+    init();
+  });
+});
 
+function init() {
     // Set up the global variables.
     $body = $('body');
     $content = $('#content');
@@ -616,8 +622,7 @@ $(function() {
 
     // Set up the grid.
     _.delay(unveil_grid, 0);
-
-});
+};
 
 
 function checkOffset(){
