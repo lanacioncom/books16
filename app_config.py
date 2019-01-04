@@ -104,8 +104,10 @@ DEBUG = True
 """
 COPY EDITING
 """
-COPY_GOOGLE_DOC_KEY = '1D7z6AocqErij7D8GMGMfxltxweu9yzPN60EuRDeaLNw'
-COPY_PATH = 'data/copy.xlsx'
+# COPY_GOOGLE_DOC_KEY = '1D7z6AocqErij7D8GMGMfxltxweu9yzPN60EuRDeaLNw'
+# COPY_PATH = 'data/copy.xlsx'
+COPY_GOOGLE_DOC_KEY = ''
+COPY_PATH = 'APP_OPTS.xlsx'
 
 # Override
 try:
