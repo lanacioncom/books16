@@ -117,12 +117,12 @@ LIBRERIAS
                         <span class="icon icon-mail"></span>
                     </div>
                 </a>
-                <a href="https://twitter.com/share?text=<%= encodeURIComponent(COPY.content.header_title + ': ' + book.title) %>&amp;url=<%= encodeURIComponent(APP_CONFIG.SHARE_URL + "share/" + book.slug + ".html") %>" target="_blank" onclick="_gaq.push(['_trackEvent', '<%= APP_CONFIG.PROJECT_SLUG %>', 'twitter', '<%= book.slug %>']);">
+                <a href="https://twitter.com/share?text=<%= encodeURIComponent(COPY.content.header_title + ': ' + book.title) %>&amp;url=<%= encodeURIComponent(APP_CONFIG.SHARE_URL + "#/book/" + book.slug) %>" target="_blank" onclick="_gaq.push(['_trackEvent', '<%= APP_CONFIG.PROJECT_SLUG %>', 'twitter', '<%= book.slug %>']);">
                     <div class="share-button">
                         <span class="icon icon-twitter"></span>
                     </div>
                 </a>
-                <a href="https://www.facebook.com/dialog/feed?app_id=<%= COPY.share.facebook_app_id %>&amp;link=<%= encodeURIComponent(APP_CONFIG.SHARE_URL + "share/" + book.slug + ".html") %>&amp;redirect_uri=<%= encodeURIComponent(APP_CONFIG.SHARE_URL + "#book/" + book.slug) %>" target="_blank" onclick="_gaq.push(['_trackEvent', '<%= APP_CONFIG.PROJECT_SLUG %>', 'facebook', '<%= book.slug %>']);">
+                <a href="https://www.facebook.com/dialog/feed?app_id=<%= COPY.share.facebook_app_id %>&amp;link=<%= encodeURIComponent(APP_CONFIG.SHARE_URL + "#/book/" + book.slug) %>&amp;redirect_uri=<%= encodeURIComponent(APP_CONFIG.SHARE_URL + "#book/" + book.slug) %>" target="_blank" onclick="_gaq.push(['_trackEvent', '<%= APP_CONFIG.PROJECT_SLUG %>', 'facebook', '<%= book.slug %>']);">
                     <div class="share-button">
                         <span class="icon icon-facebook"></span>
                     </div>
