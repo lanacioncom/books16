@@ -55,7 +55,9 @@ var scroll_to = function($el) {
  * Jump back to the top of the page.
  */
 var back_to_top = function() {
-    $body.scrollTo($content, { duration:450 }, 'y');
+    // $body.scrollTo($header, { duration:450 }, 'y');
+    $('html,body').animate({ scrollTop: 0 }, 'slow');
+    console.log("back_to_top")
     return false;
 };
 
