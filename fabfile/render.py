@@ -135,6 +135,8 @@ def render_all():
             view = _view_from_name(name)
 
             if rule_string.startswith('/share'):
+                print("Comento el render del share")
+                continue
                 with open('www/static-data/books.json', 'rb') as readfile:
                     books = json.load(readfile)
 

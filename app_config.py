@@ -23,14 +23,14 @@ NAMES
 # Project name to be used in urls
 # Use dashes, not underscores!
 PROJECT_SLUG = '2017'
-
-d =  datetime.now()
-TIMESTAMP =  d.strftime("%s")
-# Allow override from local settings to test random_prod locally
 try:
     from local_settings import PROJECT_SLUG
 except ImportError:
     pass
+
+d =  datetime.now()
+TIMESTAMP =  d.strftime("%s")
+# Allow override from local settings to test random_prod locally
 
 # Project name to be used in file paths
 # PROJECT_FILENAME = '2017'
