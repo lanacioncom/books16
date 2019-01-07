@@ -42,6 +42,7 @@ var touchFactor = 1;
 var swipeDetected = null;
 
 var bodyPosition = 0;
+var $search;
 
 /*
  * Scroll to a given element.
@@ -415,6 +416,8 @@ var on_book_modal_closed = function() {
         $('body').scrollTo(bodyPosition, { duration:1000 });
     }
 
+    clear_select2_search();
+
     return true;
 
 };
@@ -515,9 +518,16 @@ var resize = function() {
     $large_ad.height(height);
 }
 
+var clear_select2_search = function() {
+
+     $search.val(null);
+    $search.trigger("change");
+};
+
+
 $(function() {
- console.log('get data');
- var api_url = [window.API_URL, "/", window.PROJECT_SLUG].join("");
+ // console.log('get data');
+ var api_url = [window.API_URL, "/", window.PROJECT_SLUG, "/"].join("");
  $.get(api_url, function(data) {
     console.log('get data done');
     window.BOOKS = data;
@@ -546,6 +556,7 @@ function init() {
     $share_modal = $('#share-modal');
     $large_ad = $('#largeVersion');
     $header = $('#top');
+
     window.BOOKS = _.shuffle(window.BOOKS);
     _.each(window.BOOKS, function(book, i) {
         var book_grid_content = window.JST["book_grid_item"]({
@@ -565,13 +576,36 @@ function init() {
         }
         return book;
     }), 'sort_title');
+    
+    var selectData = [];
     _.each(window.BOOKS_SORTED, function(book, i) {
         var book_list_content = window.JST["book_list_item"]({
             book: book,
             loop_index: i
         });
         $books_list.append(book_list_content);
+        selectData.push({id: book.slug, text: book.title})
     });
+
+    /** statrt select2 */
+    $search = $(".select2");
+    $search.select2({
+        data: selectData,
+        placeholder: "Buscar",
+        allowClear: true,
+        width: '100%'
+    })
+    .on("change", function(){
+        // console.log(this.value);
+        if(this.value){
+            hasher.setHash('book', this.value);
+            ANALYTICS.trackEvent('view-from-search-select', this.value);
+
+        }
+    });
+    clear_select2_search();
+    /** --statrt select2 */
+
 
     // Event handlers.
     $body.on('click', '.filter .tag', on_tag_clicked);
