@@ -28,6 +28,14 @@ try:
 except ImportError:
     pass
 
+
+BOOKS_AVAIBLE = ['2017', '2018']
+try:
+    from local_settings import BOOKS_AVAIBLE
+except ImportError:
+    pass
+
+
 d =  datetime.now()
 TIMESTAMP =  d.strftime("%s")
 # Allow override from local settings to test random_prod locally
