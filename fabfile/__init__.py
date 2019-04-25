@@ -306,5 +306,8 @@ def shiva_the_destroyer():
 def deploy_ln():
     """ Doploy to lanacion.com.ar servers """
     #update()
-    render.render_all()
-    deploy_s3.deploy_s3()
+    for year in ([""]+local_settings.BOOKS_AVAIBLE):
+        print "*** Deploying %s page" % (year or "Home")
+        app_config.PROJECT_SLUG = year
+        render.render_all()
+        deploy_s3.deploy_s3()

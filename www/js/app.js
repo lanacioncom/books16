@@ -526,8 +526,11 @@ var clear_select2_search = function() {
 
 
 $(function() {
- // console.log('get data');
- var api_url = [window.API_URL, "/", window.PROJECT_SLUG, "/"].join("");
+ var api_url = window.API_URL;
+ if(window.PROJECT_SLUG) {
+    api_url = [window.API_URL, window.PROJECT_SLUG, "/"].join("");
+ }
+
  $.get(api_url, function(data) {
     console.log('get data done');
     window.BOOKS = data;
