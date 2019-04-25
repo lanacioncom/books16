@@ -35,9 +35,7 @@
         <h2 class="seo_tag_hidden">{{ COPY.content.header_subhead }}</h2>
         <p class="byline">{{ COPY.attribution.byline }}</p>
         <p class="caltalogos">Conocé nuestras recomendaciones para los años 
-            {% for year in BOOKS_AVAIBLE %}
-            <a href="https://libros.lanacion.com.ar/{{year}}/">{{year}}</a> 
-            {% endfor %}
+            {% for year in BOOKS_AVAIBLE %}<a href="https://libros.lanacion.com.ar/{{year}}/">{{year}}</a>{% endfor %}
         </p>
         <!-- <button class="share btn btn-default" data-toggle="modal" data-backdrop="static" data-target="#share-modal"><i class="icon-export"></i> COMPARTIR</button> -->
 
